@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>校区教务工作手册 · 桃李未来</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet"><style>
+:root {
+  --ink:#1a1a2e;--vermillion:#b5342e;--vermillion-deep:#7a1a1a;--vermillion-light:#fce8e6;
+  --jade:#2d6b5e;--jade-light:#e6f4f0;--gold:#b8942e;--gold-light:#fdf5e6;
+  --parchment:#fdfaf3;--parchment-dark:#f5f0e6;--stone:#e2ddd2;
+  --text:#2c2416;--text-secondary:#5c5240;--text-muted:#6b5d4a;--card:#ffffff;
+  --shadow:0 4px 24px rgba(44,36,22,0.08);--shadow-lg:0 12px 48px rgba(44,36,22,0.12);
+  --radius:10px;--radius-lg:16px;--radius-xl:24px;--transition:0.3s cubic-bezier(0.4,0,0.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif;background:var(--parchment);color:var(--text);line-height:1.75;min-height:100vh;overflow-x:hidden;font-size:15px;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(181,52,46,0.03) 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(45,107,94,0.03) 0%,transparent 60%);pointer-events:none;z-index:0;}
+.container{max-width:1440px;margin:0 auto;padding:24px;position:relative;z-index:1;}
+.scroll-hint{display:none;}
+@media(max-width:768px){.scroll-hint{display:block;}}
+
+/* Header */
+.header{background:linear-gradient(135deg,var(--vermillion-deep) 0%,#8b1a2b 40%,var(--vermillion) 70%,#c44a3f 100%);color:#fff;padding:32px 40px;border-radius:var(--radius-xl);margin-bottom:18px;position:relative;overflow:hidden;box-shadow:0 8px 40px rgba(122,26,26,0.2);min-height:120px;}
+.header::before{content:'';position:absolute;top:-50%;right:-10%;width:400px;height:400px;border-radius:50%;background:rgba(255,255,255,0.04);}
+.header-content{position:relative;z-index:1;}
+.header h1{font-family:'Noto Serif SC','STSong','SimSun',serif;font-size:30px;font-weight:900;letter-spacing:4px;margin-bottom:4px;}
+.header .subtitle{font-size:14px;opacity:0.9;font-weight:300;letter-spacing:2px;}
+.header .decorative-line{width:60px;height:3px;background:var(--gold);margin-top:10px;border-radius:2px;}
+.header .btn-export{position:absolute;right:32px;bottom:20px;z-index:2;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.1);color:#fff;padding:8px 20px;border-radius:20px;font-size:13px;cursor:pointer;font-family:inherit;transition:all 0.2s;font-weight:500;}
+.header .btn-export:hover{background:rgba(255,255,255,0.25);}
+
+/* Tabs */
+.view-tabs{display:flex;gap:8px;background:var(--card);border-radius:var(--radius);padding:8px 12px;margin-bottom:14px;box-shadow:var(--shadow);border:1px solid var(--stone);position:sticky;top:12px;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.view-tab{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;gap:5px;padding:8px 6px;text-align:center;border:1px solid transparent;background:var(--parchment-dark);cursor:pointer;border-radius:20px;font-family:'Noto Sans SC',sans-serif;font-size:12px;font-weight:500;color:var(--text-secondary);transition:all var(--transition);white-space:nowrap;}
+.view-tab:hover{background:var(--vermillion-light);color:var(--vermillion);border-color:var(--vermillion-light);}
+.view-tab.active{background:linear-gradient(135deg,var(--vermillion-deep),var(--vermillion));color:#fff;font-weight:600;border-color:var(--vermillion);box-shadow:0 2px 12px rgba(122,26,26,0.2);}
+.view-tab .tab-icon{font-size:14px;line-height:1;}
+
+/* Sub filter */
+.sub-filter{background:var(--card);border-radius:var(--radius);padding:8px 16px;margin-bottom:12px;box-shadow:0 1px 6px rgba(44,36,22,0.04);border:1px solid var(--stone);display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;}
+.sub-filter label{font-size:12px;color:var(--text-secondary);white-space:nowrap;font-weight:500;}
+.sub-filter select{padding:6px 12px;border:1px solid var(--stone);border-radius:6px;font-size:12px;font-family:inherit;color:var(--text);background:var(--parchment);min-width:160px;cursor:pointer;}
+.filter-chip{padding:4px 10px;border-radius:100px;font-size:11px;font-weight:500;border:1px solid var(--stone);background:var(--card);color:var(--text-secondary);cursor:pointer;transition:all var(--transition);white-space:nowrap;}
+.filter-chip:hover{border-color:var(--vermillion);color:var(--vermillion);}
+.filter-chip.active{background:var(--vermillion-deep);color:#fff;border-color:var(--vermillion-deep);}
+
+/* Main panel */
+.main-panel{background:var(--card);border-radius:var(--radius-lg);box-shadow:0 2px 20px rgba(44,36,22,0.06);border:1px solid var(--stone);min-height:480px;overflow:hidden;transition:opacity 0.25s cubic-bezier(0.4,0,0.2,1),transform 0.25s cubic-bezier(0.4,0,0.2,1);}
+
+/* Common */
+h3{font-family:'Noto Serif SC',serif;font-size:18px;color:var(--vermillion-deep);letter-spacing:2px;margin-bottom:14px;margin-top:20px;}
+h3:first-child{margin-top:0;}
+.section-desc{color:var(--text-secondary);font-size:13px;margin-bottom:14px;line-height:1.7;}
+.card-box{border:1px solid var(--stone);border-radius:12px;padding:20px 24px;background:var(--card);margin-bottom:14px;transition:box-shadow 0.3s ease;}
+.card-box h3{margin-top:0;}
+.card-box:hover{box-shadow:0 2px 12px rgba(44,36,22,0.06);}
+
+/* KPI / Metric cards */
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;}
+.metric-card{text-align:center;padding:14px 8px;border-radius:var(--radius);border:1px solid var(--stone);background:var(--parchment-dark);transition:all var(--transition);}
+.metric-card:hover{border-color:var(--vermillion);transform:translateY(-2px);}
+.metric-val{font-family:'Noto Serif SC',serif;font-size:26px;font-weight:900;color:var(--vermillion-deep);}
+.metric-label{font-size:11px;color:var(--text-secondary);margin-top:3px;line-height:1.4;}
+
+/* Weight bars */
+.resp-bars{display:flex;flex-direction:column;gap:14px;}
+.resp-bar-row{display:flex;align-items:center;gap:10px;}
+.resp-bar-label{width:105px;font-size:13px;font-weight:600;color:var(--ink);text-align:right;flex-shrink:0;white-space:nowrap;}
+.resp-bar-track{flex:1;height:16px;background:var(--parchment-dark);border-radius:8px;overflow:hidden;}
+.resp-bar-fill{height:100%;border-radius:10px;}
+.resp-bar-fill.w1{width:45%;background:linear-gradient(90deg,var(--vermillion),#d4706a);}
+.resp-bar-fill.w2{width:20%;background:linear-gradient(90deg,var(--jade),#5a9e8e);}
+.resp-bar-fill.w3{width:15%;background:linear-gradient(90deg,#3d6f9e,#6a9abe);}
+.resp-bar-fill.w4{width:10%;background:linear-gradient(90deg,#6d4f9e,#9a7abe);}
+.resp-bar-fill.w5{width:10%;background:linear-gradient(90deg,#c98850,#d4a870);}
+.resp-bar-pct{font-size:13px;font-weight:700;color:var(--vermillion-deep);width:36px;text-align:right;}
+
+/* Journey */
+.journey-track{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;}
+.journey-stage{flex:1;min-width:130px;border:1px solid var(--stone);border-radius:10px;padding:14px;text-align:center;cursor:pointer;transition:all var(--transition);background:var(--card);}
+.journey-stage:hover{border-color:var(--vermillion);box-shadow:var(--shadow);}
+.journey-stage.active{border-color:var(--vermillion-deep);background:var(--vermillion-light);}
+.journey-stage .stage-icon{font-size:24px;margin-bottom:4px;}
+.journey-stage .stage-name{font-size:12px;font-weight:700;color:var(--ink);}
+.journey-stage::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:10px 10px 0 0;}
+.journey-stage:nth-child(1)::before{background:var(--vermillion-deep);}
+.journey-stage:nth-child(2)::before{background:#c44a3f;}
+.journey-stage:nth-child(3)::before{background:#c98850;}
+.journey-stage:nth-child(4)::before{background:var(--jade);}
+.journey-stage:nth-child(5)::before{background:#6d4f9e;}
+.journey-stage:nth-child(6)::before{background:#3d6f9e;}
+.journey-stage:nth-child(7)::before{background:var(--vermillion);}
+
+/* Swimlane */
+.swim-front{border-left:4px solid var(--vermillion);background:linear-gradient(135deg,#fff9f8,#fef5f4);}
+.swim-back{border-left:4px solid var(--jade);background:linear-gradient(135deg,#f8fdfb,#f2faf7);}
+.swim-item{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px dashed var(--stone);font-size:11px;color:var(--text-secondary);}
+.swim-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.swim-dot.front{background:var(--vermillion);}
+.swim-dot.back{background:var(--jade);}
+.journey-detail{margin-top:14px;padding:16px;border:1px solid var(--stone);border-radius:10px;background:var(--parchment-dark);font-size:12px;line-height:1.8;}
+.journey-detail strong{color:var(--vermillion-deep);}
+.journey-detail .goal-block{background:var(--vermillion-light);color:var(--vermillion-deep);padding:6px 12px;border-radius:6px;font-weight:600;margin-bottom:8px;display:inline-block;font-size:13px;}
+.journey-detail .risk-block{border:1px solid var(--vermillion);border-left:3px solid var(--vermillion);padding:8px 12px;border-radius:0 6px 6px 0;margin-top:8px;}
+
+/* Module cards */
+.module-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.module-grid .module-card:nth-child(4),.module-grid .module-card:nth-child(5){grid-column:span 1;}
+@media(max-width:900px){.module-grid{grid-template-columns:1fr;}}
+.module-card{border:1px solid var(--stone);border-radius:14px;overflow:hidden;background:var(--card);transition:all var(--transition);}
+.module-card:hover{transform:translateY(-2px);box-shadow:var(--shadow);}
+.module-card .mod-head{display:flex;align-items:center;gap:10px;padding:16px 18px 12px;}
+.module-card .mod-head-bar{height:4px;margin:0;}
+.module-card .mod-icon{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;color:#fff;flex-shrink:0;}
+.module-card .mod-name{font-size:14px;font-weight:700;color:var(--ink);}
+.module-card .mod-weight{font-size:11px;color:var(--text-muted);margin-top:1px;}
+.module-card .mod-body{padding:6px 18px 16px;}
+.module-card .mod-goal{font-size:11px;color:var(--vermillion-deep);margin-bottom:10px;line-height:1.6;}
+.module-card .mod-section{margin-bottom:8px;}
+.module-card .mod-section-title{font-size:10px;font-weight:700;letter-spacing:0.5px;color:var(--text-muted);margin-bottom:3px;}
+.module-card .mod-tags{display:flex;flex-wrap:wrap;gap:3px;}
+.module-card .mod-tag{font-size:10px;padding:2px 8px;border-radius:8px;background:var(--parchment-dark);color:var(--text-secondary);}
+.module-card .mod-kpi-tag{font-size:10px;padding:2px 8px;border-radius:8px;background:var(--jade-light);color:var(--jade);}
+
+/* Risk cards */
+.risk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.risk-card{border:1px solid var(--stone);border-radius:12px;padding:16px;background:var(--card);transition:all var(--transition);}
+.risk-card:hover{box-shadow:var(--shadow);}
+.risk-card .risk-header{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-weight:700;font-size:13px;}
+.risk-card.active-risk{border-color:var(--vermillion);box-shadow:0 0 0 1px rgba(181,52,46,0.15);}
+
+/* SOP center */
+.sop-center-view{display:flex;min-height:500px;}
+.sop-center-nav{width:220px;border-right:1px solid var(--stone);padding:12px 0;background:linear-gradient(180deg,var(--parchment-dark) 0%,var(--parchment) 100%);flex-shrink:0;overflow-y:auto;}
+.sop-center-nav-title{padding:4px 16px 6px;font-size:10px;color:var(--text-muted);font-weight:600;letter-spacing:2px;text-transform:uppercase;}
+.sop-center-nav-item{padding:9px 16px;cursor:pointer;border-left:3px solid transparent;font-size:12px;color:var(--text-secondary);transition:all var(--transition);}
+.sop-center-nav-item:hover{background:rgba(181,52,46,0.04);color:var(--vermillion);}
+.sop-center-nav-item.active{background:#fff;border-left-color:var(--vermillion);color:var(--vermillion-deep);font-weight:600;box-shadow:0 2px 8px rgba(122,26,26,0.08);}
+.sop-center-detail{flex:1;padding:20px 24px;overflow-y:auto;max-height:550px;}
+
+/* SOP detail card */
+.sop-item{border:1px solid var(--stone);border-left:3px solid var(--stone);border-radius:0 8px 8px 0;padding:12px 14px;margin-bottom:6px;background:var(--card);transition:all var(--transition);}
+.sop-item:hover{transform:translateX(5px);box-shadow:var(--shadow);}
+.sop-item.risk-high{border-left-color:var(--vermillion);}
+.sop-item.risk-mid{border-left-color:var(--gold);}
+.sop-item.risk-low{border-left-color:#b0a998;}
+
+/* Expand hint chevron for checklist-item details */
+.checklist-item:hover {box-shadow:0 2px 8px rgba(44,36,22,0.06);}
+.checklist-item summary::after {
+  content:'';
+  display:inline-block;width:7px;height:7px;
+  border-right:2px solid var(--text-muted);border-bottom:2px solid var(--text-muted);
+  transform:rotate(45deg);margin-left:6px;flex-shrink:0;
+  transition:transform 0.3s ease;
+}
+.checklist-item[open] summary::after {transform:rotate(-135deg);}
+.sop-item .sop-item-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.sop-item .sop-item-name{font-weight:600;font-size:13px;color:var(--vermillion-deep);}
+.sop-item .sop-item-tags{display:flex;gap:4px;flex-wrap:wrap;}
+.sop-item .sop-item-tag{font-size:10px;padding:2px 7px;border-radius:10px;font-weight:500;}
+.tag-high{background:var(--vermillion-light);color:var(--vermillion-deep);}
+.tag-mid{background:var(--gold-light);color:#6b4f10;}
+.tag-low{background:#e8e2d9;color:var(--text-muted);}
+
+/* Checklist */
+.checklist-view{display:flex;min-height:500px;}
+.checklist-nav{width:200px;border-right:1px solid var(--stone);padding:12px 0;background:linear-gradient(180deg,var(--parchment-dark) 0%,var(--parchment) 100%);flex-shrink:0;overflow-y:auto;}
+.checklist-nav-title{padding:4px 16px 6px;font-size:10px;color:var(--text-muted);font-weight:600;letter-spacing:2px;text-transform:uppercase;}
+.checklist-nav-item{padding:9px 16px;cursor:pointer;border-left:3px solid transparent;font-size:12px;color:var(--text-secondary);transition:all var(--transition);}
+.checklist-nav-item:hover{background:rgba(181,52,46,0.04);color:var(--vermillion);}
+.checklist-nav-item.active{background:#fff;border-left-color:var(--vermillion);color:var(--vermillion-deep);font-weight:600;}
+.checklist-detail{flex:1;padding:20px 24px;overflow-y:auto;max-height:550px;}
+
+/* Red/Yellow */
+.rule-item{border:1px solid var(--stone);border-radius:8px;padding:10px 14px;margin-bottom:5px;background:var(--card);}
+.rule-item.red{border-left:3px solid var(--vermillion);}
+.rule-item.yellow{border-left:3px solid #b8942e;}
+.rule-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.06em;padding:2px 8px;border-radius:4px;margin-bottom:3px;}
+.rule-tag.red{background:var(--vermillion-light);color:var(--vermillion-deep);}
+.rule-tag.yellow{background:var(--gold-light);color:#6b4f10;}
+
+/* Tables */
+.table-wrap{border:1px solid var(--stone);border-radius:10px;overflow:hidden;margin:10px 0;}
+table{width:100%;border-collapse:collapse;font-size:12px;}
+thead tr{background:var(--parchment-dark);}
+thead th{padding:8px 10px;text-align:left;font-size:10px;font-weight:600;letter-spacing:0.06em;color:var(--text-muted);text-transform:uppercase;border-bottom:1px solid var(--stone);white-space:nowrap;}
+tbody tr{border-bottom:1px solid var(--stone);}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:nth-child(even){background:rgba(245,240,230,0.5);}
+tbody tr:hover{background:var(--parchment);}
+td{padding:8px 10px;color:var(--text-secondary);vertical-align:top;line-height:1.6;font-size:11px;}
+td:first-child{font-weight:500;color:var(--text);}
+
+/* Journey timeline */
+.timeline-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:10px 0;}
+.timeline-dot{display:flex;align-items:center;gap:4px;padding:5px 10px;background:var(--parchment-dark);border-radius:20px;font-size:11px;font-weight:600;color:var(--vermillion-deep);}
+.timeline-arrow{color:var(--stone);font-size:14px;}
+
+/* Risk radar pulse */
+@keyframes pulse-warn { 0%,100%{box-shadow:0 0 0 0 rgba(181,52,46,0.4);} 50%{box-shadow:0 0 0 8px rgba(181,52,46,0);} }
+@keyframes bounceDown { 0%,100%{transform:translateY(0);} 50%{transform:translateY(4px);} }
+@keyframes bounceRight { 0%,100%{transform:translateX(0);} 50%{transform:translateX(5px);} }
+@keyframes bounceLeft { 0%,100%{transform:translateX(0);} 50%{transform:translateX(-8px);} }
+.risk-card:hover .risk-dot{animation:pulse-warn 2s infinite;}
+.risk-dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:6px;}
+.risk-active .risk-dot{animation:pulse-warn 2s infinite;}
+
+/* Print */
+.print-only{display:none;}
+.btn-back-top{position:fixed;bottom:24px;right:24px;z-index:150;width:40px;height:40px;border-radius:50%;background:var(--vermillion-deep);color:#fff;border:none;cursor:pointer;box-shadow:var(--shadow);font-size:18px;display:flex;align-items:center;justify-content:center;transition:all var(--transition);opacity:0.85;}
+.btn-back-top:hover{opacity:1;transform:translateY(-2px);}
+
+@media print{
+  .view-tabs,.sub-filter,.checklist-nav,.sop-center-nav,.mobile-nav-toggle,.mobile-nav-overlay,.mobile-nav-panel,.header button,.btn-export{display:none!important;}
+  .print-only{display:block!important;}
+  .header{background:#fff!important;color:var(--text)!important;border:1px solid var(--vermillion-deep)!important;box-shadow:none!important;}
+  .header h1{color:var(--vermillion-deep)!important;}
+  .header .subtitle{color:var(--text-secondary)!important;}
+  .main-panel{box-shadow:none;border:1px solid #ddd;}
+  .container{max-width:100%;padding:0;}
+  body{background:#fff;}
+  body::before,body::after{display:none;}
+  .checklist-view,.sop-center-view{flex-direction:column;}
+  .checklist-detail,.sop-center-detail{max-height:none;}
+  .module-grid,.metric-grid{grid-template-columns:repeat(2,1fr);}
+  @page{margin:10mm;}
+}
+
+/* Mobile */
+.mobile-nav-toggle{display:none;position:fixed;top:14px;right:14px;z-index:200;width:40px;height:40px;border-radius:10px;border:1px solid var(--stone);background:var(--card);font-size:20px;cursor:pointer;box-shadow:var(--shadow);align-items:center;justify-content:center;}
+.mobile-nav-overlay{display:none;position:fixed;inset:0;z-index:190;background:rgba(0,0,0,0.4);backdrop-filter:blur(4px);}
+.mobile-nav-panel{display:none;position:fixed;top:0;right:0;z-index:195;width:260px;height:100vh;background:var(--card);box-shadow:var(--shadow-lg);padding:60px 20px 20px;overflow-y:auto;flex-direction:column;gap:2px;}
+.mobile-nav-panel a{display:block;padding:9px 12px;border-radius:8px;text-decoration:none;color:var(--text-secondary);font-size:13px;font-family:'Noto Serif SC',serif;letter-spacing:1px;}
+.mobile-nav-panel a:hover{background:var(--vermillion-light);color:var(--vermillion);}
+@media(max-width:768px){
+  .mobile-nav-toggle{display:flex;}
+  .mobile-nav-overlay.show{display:block;}
+  .mobile-nav-panel.show{display:flex;}
+  .view-tabs{flex-wrap:nowrap;overflow-x:auto;}
+  .view-tab{min-width:56px;font-size:12px;padding:7px 6px;}
+  .view-tab .tab-icon{display:block;margin:0 auto 1px;font-size:15px;}
+  .module-grid,.metric-grid,.risk-grid{grid-template-columns:1fr;}
+  .journey-track{flex-wrap:nowrap;overflow-x:auto;}
+  .checklist-view,.sop-center-view{flex-direction:column;}
+  .checklist-nav,.sop-center-nav{width:100%;border-right:none;border-bottom:1px solid var(--stone);display:flex;overflow-x:auto;padding:6px;}
+  .checklist-nav-item,.sop-center-nav-item{white-space:nowrap;border-left:none;border-bottom:2px solid transparent;}
+  .checklist-nav-item.active,.sop-center-nav-item.active{border-left:none;border-bottom-color:var(--vermillion);}
+  .checklist-detail,.sop-center-detail{max-height:none;}
+}
+html{scrollbar-width:thin;scrollbar-color:var(--stone) transparent;}
+::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--stone);border-radius:3px;}
+::-webkit-scrollbar-thumb:hover{background:var(--text-muted);}
+:focus-visible{outline:2px solid var(--vermillion);outline-offset:2px;border-radius:2px;}
+:focus:not(:focus-visible){outline:none;}
+
+/* Mission card */
+.mission-card{background:linear-gradient(135deg,var(--vermillion-deep),var(--vermillion));color:#fff;border-radius:12px;padding:22px 26px;margin-bottom:14px;}
+.mission-card .mission-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;opacity:0.7;margin-bottom:4px;}
+.mission-card .mission-text{font-family:'Noto Serif SC',serif;font-size:15px;line-height:1.8;font-weight:500;}
+</style>
+</head>
+<body>
+
+<button class="mobile-nav-toggle" onclick="toggleMobileNav()" aria-label="菜单">☰</button>
+<div class="mobile-nav-overlay" id="mobileOverlay" onclick="toggleMobileNav()"></div>
+<div class="mobile-nav-panel" id="mobilePanel"></div>
+
+<div class="container">
+  <div class="header" style="position:relative;">
+    <div style="position:absolute;right:20px;top:50%;transform:translateY(-50%);font-family:'Noto Serif SC',serif;font-size:120px;font-weight:900;color:rgba(255,255,255,0.04);pointer-events:none;user-select:none;white-space:nowrap;letter-spacing:20px;">教务</div>
+    <div class="header-content">
+      <h1>校区教务工作手册</h1>
+      <div class="subtitle">桃李未来 · 学科培优事业部</div>
+      <div class="decorative-line"></div>
+    </div>
+    
+  </div>
+
+  <div class="view-tabs" id="viewTabs"></div>
+  <div class="sub-filter" id="subFilter"></div>
+  <div class="main-panel" id="mainPanel"></div>
+
+  <div class="print-only" id="printContainer"></div>
+</div>
+
+<script>
+// ==================== DATA ====================
+
+const MODULES = [
+  {name:'学员服务',weight:'45%',goal:'提升家长满意度与学员稳定性',color:'#b5342e',
+   actions:['售后服务承接','学期开课提醒','考勤回访','请假缺勤','调课转班','家长响应','问题闭环'],
+   outputs:['服务记录','沟通记录','回访总结'],
+   kpis:['客户满意度','工作及时率','问题闭环率'],
+   collab:['任课老师','校区副主管']},
+  {name:'教学支持',weight:'20%',goal:'协同教学端提升学员学习体验',color:'#2d6b5e',
+   actions:['信息同步','学情反馈','课堂异常','插班适应','统测升班','续费支持'],
+   outputs:['同步记录','学情反馈','协同记录'],
+   kpis:['信息同步率','协同响应率'],
+   collab:['任课老师','校区副主管']},
+  {name:'现场管理',weight:'15%',goal:'保障校区现场安全有序运转',color:'#3d6f9e',
+   actions:['前台接待','开闭店检查','校区巡查','教室管理','秩序维护','安全看护','外包管理'],
+   outputs:['检查记录','巡查记录','事件记录'],
+   kpis:['标准化考核','现场达成率','安全闭环率'],
+   collab:['校区副主管','保洁保安']},
+  {name:'物资保障',weight:'10%',goal:'保障物资账实一致供应及时',color:'#6d4f9e',
+   actions:['需求提报','入库建账','教材发放','物资领用','库存盘点','异常反馈','活动物资'],
+   outputs:['出入库记录','盘点表','台账'],
+   kpis:['物资准确率','发放及时率','盘点准确率'],
+   collab:['产品制作部','任课老师']},
+  {name:'活动协同',weight:'10%',goal:'保障校区活动、测试、考务等现场执行有序落地',color:'#c98850',
+   actions:['活动准备','场地布置','签到接待','秩序维护','场地复原','活动复盘'],
+   outputs:['签到表','复盘记录','外包检查'],
+   kpis:['执行达成率','家长满意度'],
+   collab:['顾问','老师','校区副主管']}
+];
+
+const LIFECYCLE = [
+  {stage:'线索获取与筛选',goal:'顾问承接线索并判断有效性',actions:'顾问：线索承接 · 判断有效性'},
+  {stage:'售前沟通',goal:'需求沟通、意向评级、邀约诊断',actions:'顾问：需求沟通 · 意向评级 · 邀约诊断'},
+  {stage:'售中沟通与转化',goal:'测试体验、面咨、成交转化',actions:'顾问：测试体验 · 面咨 · 成交 | 教务：现场接待 · 测试安排'},
+  {stage:'售后承接与开课',goal:'新报承接、开课提醒、首课保障',actions:'教务：新报承接 · 开课提醒 | 老师：课堂授课'},
+  {stage:'教学交付',goal:'课堂教学与教务教学支持',actions:'老师：课堂授课 | 教务：教学物资保障 · 教学服务支持'},
+  {stage:'课后服务与家校沟通',goal:'课后反馈、家校服务、问题处理',actions:'教务：家校服务 · 问题处理/对接 | 老师：课后反馈'},
+  {stage:'续费扩科复购',goal:'续费促进、扩科转化、复购跟进',actions:'顾问：扩科复购转化 | 老师：续费促进'},
+  {stage:'老带新转介绍',goal:'服务口碑维护、转介绍跟进',actions:'顾问：转介绍跟进 | 教务：服务口碑维护'}
+];
+
+const CHECKLIST = {
+  daily:{title:'每日',goal:'保障校区当日正常运转',groups:[
+    {phase:'环境运营',tasks:[
+      {task:'开店巡检',goal:'校区可正常接待',detail:'①开启灯光、饮水机、充电室；②公共区域及教室空调（≥25℃）；③检查环境美观化达标；④巡查教室/仓库/机房/洗手间，排查安全隐患'},
+      {task:'物资检查与补充',goal:'当日课程物资无缺漏',detail:'①检查前台常用物品用量并补充（白板笔、签字笔、固体胶、便利贴等）；②物资摆放整齐，方便拿取'},
+      {task:'保洁卫生检查',goal:'环境整洁，问题闭环',detail:'①检查走廊、公共区域、教室地面及白板是否干净；②洗手间卫生达标；③发现问题及时处理并闭环'}
+    ]},
+    {phase:'计划与复盘',tasks:[
+      {task:'未完成事项跟进',goal:'旧事不遗漏',detail:'①对前一日未闭环事项逐一核查；②已解决的更新记录，未解决的列入当日重点任务推进'},
+      {task:'当日工作计划安排',goal:'重点优先落实',detail:'①查阅本周工作计划，明确当日重点任务；②合理分配执行时间，高优先级事项优先落实'}
+    ]},
+    {phase:'信息管理',tasks:[
+      {task:'每日信息查阅',goal:'重要通知无遗漏',detail:'①查阅企业微信、阿里邮箱、工作群及公众号等渠道信息；②重要通知无遗漏，需处理事项列入当日待办'}
+    ]},
+    {phase:'学员服务',tasks:[
+      {task:'新签学员承接',goal:'服务不断档',detail:'①接收顾问交接的学员基础信息（含标签、学情）；②开课前完成客户联系动作；③持续跟进在读学员服务'},
+      {task:'在读续费跟进',goal:'识别机会，推动转化',detail:'①主动识别学员续费机会；②结合学员学习情况与家长需求开展针对性沟通；③跟进续报进度，关注流失风险'},
+      {task:'客户咨询与服务响应',goal:'有回应有跟进有闭环',detail:'①及时响应校区服务群/VIP群/前台来电及到访咨询；②家长常规问题解答；③超权限/投诉类问题及时同步主管；④做好诉求记录，确保有回应、有跟进、有闭环'},
+      {task:'调课/转班/退费/开票办理',goal:'流程规范，事项闭环',detail:'①按规则完成调课、转班、退费、开票等流程操作；②跟进各流程处理进展，确保事项闭环'}
+    ]},
+    {phase:'校区安全',tasks:[
+      {task:'校区巡查',goal:'安全无死角',detail:'①排查安全隐患，维护上下课秩序；②巡查教室/走廊/家长等候区/消防通道；③关注系统无课但无借用记录的教室使用异常'},
+      {task:'前台与现场支持',goal:'现场运转顺畅',detail:'①承接前台临时事务/到访接待；②物资临时调配及打印复印支持；③处理现场突发问题；④协助寻找物品/查监控'}
+    ]},
+    {phase:'退费风险',tasks:[
+      {task:'退费预警识别与跟进',goal:'早发现早挽留',detail:'①每日关注在读学员动态，识别投诉苗头/连续缺勤/家长情绪异常等退费预警信号；②及时同步主管，配合启动挽留动作；③记录处理进展'}
+    ]},
+    {phase:'收尾工作',tasks:[
+      {task:'闭店巡检',goal:'安全关闭，不留隐患',detail:'①关公共区域灯光/空调/饮水机/充电室；②关教室设备（一体机/投影仪/微型机）/空调/灯；③关洗手间灯及空调；④确认校区无学员/家长滞留；⑤提醒留校老师关灯锁门'},
+      {task:'未完成事项交接登记',goal:'明日有人跟进',detail:'①当日未闭环事项书面记录；②设置次日提醒，确保不遗漏、有人跟进'},
+      {task:'教室及前台物资归位',goal:'整洁有序',detail:'①教室物资、前台物资归位整理；②工位整理，保持校区整洁形象'}
+    ]}
+  ]},
+  weekly:{title:'每周',goal:'稳定服务质量，及时发现问题',groups:[
+    {phase:'环境运营',tasks:[
+      {task:'物资整理与补充',goal:'物资充足摆放整齐',detail:'①失物招领柜按流程执行；②前台物资补充并摆放整齐；③检查饮用水数量及TDS值（个位数达标）；④教师零食加油站定期补充'},
+      {task:'教室设备核查',goal:'教学条件满足要求',detail:'①查询排课系统，确认本周课程安排；②检查教室设施设备是否满足教学要求（周度深度检查，与每日开店项互补）'},
+      {task:'课表更新',goal:'课表信息与系统一致',detail:'①更新教室门牌课程表；②确保线下课表与系统数据保持一致（无电子门牌校区适用）'},
+      {task:'存储空间整理',goal:'仓库整洁物资可查',detail:'①整理仓库及讲义室；②出库当周常用物资；③登记并核查本周物资消耗情况，为采购提供依据'}
+    ]},
+    {phase:'安全合规',tasks:[
+      {task:'基础安全检查',goal:'安全隐患无遗漏',detail:'①检查消防通道/门窗/电源/设备/监控等基础安全事项；②发现隐患及时记录并对接处理；③检查外包服务质量（保洁/保安完成情况）'},
+      {task:'合规台账维护',goal:'台账时效准确',detail:'①更新学员合同、消防台账、合规台账；②更新公示栏内容，确保信息时效准确'}
+    ]},
+    {phase:'学员服务',tasks:[
+      {task:'教材发放',goal:'教材准确发放到位',detail:'①开课前提前盘点教材数量并送至对应教室；②线下签单完成后及时发放；③插班生线上签单后，上课前由教务将教材送至老师教室'},
+      {task:'教学服务支持',goal:'老师需求及时响应',detail:'①协助老师领取/发放教学物资；②处理课中临时打印/复印需求，遵循《校区物资领用规范》'},
+      {task:'考勤回访',goal:'缺勤原因清晰有跟进',detail:'①对缺勤/迟到/异常出勤学员按要求回访并做好记录；②有课程调整需求的学员持续跟进协调，异常问题及时反馈主管'},
+      {task:'校区群信息同步与管理',goal:'信息准确及时无遗漏',detail:'①在校区服务群/互通群同步积分奖励领取、校区活动及事项通知；②确保信息准确、及时、无遗漏'},
+      {task:'在读学员升班测试',goal:'测试安排有序',detail:'①根据在读学员家长需求，邀约前台测试升班；②接待在读学员，安排升班测试；③成功升班——表达祝贺；未成功升班——表达鼓励'},
+      {task:'在读续费/续费预警跟进',goal:'流失风险早识别',detail:'①每周梳理近期到期及高风险学员名单；②协同老师了解学员学情，制定跟进优先级；③对已识别流失风险学员启动主动沟通'}
+    ]},
+    {phase:'运营复盘',tasks:[
+      {task:'服务问题复盘与反馈',goal:'问题有归因有改善',detail:'①汇总本周家长常见问题/投诉苗头/服务卡点，形成书面反馈提交主管；②参加校区周例会，汇报本周问题与待办事项'}
+    ]},
+    {phase:'品牌运营',tasks:[
+      {task:'口碑宣传配合',goal:'宣传有记录有反馈',detail:'①按校区要求完成朋友圈内容转发；②做好宣传执行记录与反馈'}
+    ]}
+  ]},
+  monthly:{title:'每月',goal:'通过数据和复盘提升运营质量',groups:[
+    {phase:'学员服务',tasks:[{task:'学习回访',goal:'回访有记录有闭环',detail:'①按要求完成月度学员学习回访任务；②记录回访结果，异常问题24小时内给家长答复解决方案；③跟进问题处理闭环'}]},
+    {phase:'物资管理',tasks:[{task:'月度物资采购与库存盘点',goal:'账实一致供应及时',detail:'①月度物资采购申请；②盘点库存，核对出入库登记，统计物资消耗情况；③接收物资并登记入账'}]},
+    {phase:'外包管理',tasks:[{task:'外包人员月度培训',goal:'服务规范清晰执行到位',detail:'①组织外包人员月度培训（保洁/保安）；②传达服务规范及注意事项；③做好培训记录并现场监督'}]},
+    {phase:'人员成长',tasks:[{task:'教务培训与月度考核',goal:'能力提升有针对性',detail:'①参加专业培训及月度考核；②针对专业能力薄弱项，配合主管制定改进计划'}]},
+    {phase:'数据核对',tasks:[{task:'月度数据核对与汇总',goal:'数据准确无误',detail:'①外包人员考勤；②设备维修单核对；③打印机抄表；④饮用水费用明细及发票核对'}]},
+    {phase:'品牌环境',tasks:[{task:'品牌与环境问题反馈',goal:'物料及时更新环境问题有跟进',detail:'①根据教务组中台宣传安排，同步宣传物料上下架要求；②每月排查展架/电子屏/前台电视/宣传物料/环境问题；③汇总分类，及时对接相关部门推进印刷/更换/维修；④持续跟进处理进度并反馈结果'}]},
+    {phase:'安全合规',tasks:[{task:'月度安全检查与培训',goal:'隐患清零培训到位',detail:'①开展月度安全检查，排查消防/设备隐患；②组织安全培训，更新消防及安全设施检查记录；③发现设施故障，按类别提交维修工单并跟进至闭环'}]},
+    {phase:'运营复盘',tasks:[{task:'月度经营数据协同复盘',goal:'问题有数据支撑有改善方向',detail:'①汇总本月服务类问题；②参与周/月例会/复盘会，反馈教务视角问题与改善建议'}]}
+  ]},
+  term:{title:'学期',goal:'保障阶段性开课结课和合规工作顺利完成',groups:[
+    {phase:'学员服务',tasks:[{task:'学期开课前提醒',goal:'开课通知全覆盖',detail:'①针对在读学员，学期开课前一周内，完成在读学员开课提醒；②解决家长调课转班需求'}]},
+    {phase:'活动支持',tasks:[{task:'学期jei sh现场执行',goal:'活动有序满意度可收集',detail:'①统筹结业活动现场布置/签到/秩序维护/资料发放；②配合收集家长满意度调查；③活动结束后协助整理物资'}]},
+    {phase:'合规管理',tasks:[{task:'学期合规台账全面更新',goal:'台账完整无缺失',detail:'①学期结束前完整核对学员合同/消防台账/合规台账；②核查公示栏内容更新'}]},
+    {phase:'物资管理',tasks:[{task:'学期教材盘点与需求上报',goal:'教材数据准确需求明确',detail:'①学期末盘点教材库存，核对当学期教材消耗；②上报下学期教材需求，提交至产研部确认；③处理教材缺漏/破损/版本不符等遗留问题'}]}
+  ]},
+  adhoc:{title:'不定期',goal:'快速响应突发变化和临时需求',groups:[
+    {phase:'活动支持',tasks:[{task:'大型品牌活动现场支持',goal:'活动顺利经验沉淀',detail:'①负责场地布置/现场引导/签到/秩序维护/资料发放及家长接待；②活动结束后协助复盘，沉淀经验'},{task:'招生活动支持',goal:'活动执行顺畅转化有跟进',detail:'①负责活动现场管理及突发问题处理，保障活动顺利执行；②协助客户接待/信息登记；③考务活动统筹配合'}]},
+    {phase:'学员服务',tasks:[{task:'活动名单跟进',goal:'到场提醒转化处理',detail:'①在读学员活动报名到场提醒；②活动后课程转化/转班处理'}]},
+    {phase:'物资管理',tasks:[{task:'物资出入库管理',goal:'账实一致异常有反馈',detail:'①接收印刷物资/活动物资，逐一核对数量与规格；②完成入库登记，更新物资台账；③活动结束后反馈物资剩余数量；④发现缺漏/破损/到货异常及时反馈'}]},
+    {phase:'突发应对',tasks:[{task:'突发投诉/紧急服务响应',goal:'24小时内响应闭环',detail:'①接到家长重大投诉时，24小时内完成情况核实、上报、处理方案制定及家长回复；②情绪激烈/争议类投诉及时移交主管或中台客诉组'}]},
+    {phase:'新员工支持',tasks:[{task:'新员工入职带训',goal:'新人快速上手',detail:'①新成员入职时启动，完成新人帮带工作；②新成员的问题记录并反馈给主管'}]},
+    {phase:'合规管理',tasks:[{task:'专项督导迎检',goal:'材料齐全现场有序',detail:'①收到检查通知后，完成材料准备（合规台账/安全记录/培训记录）；②现场陪同并记录；③收到整改意见后跟进闭环'}]},
+    {phase:'政策落地',tasks:[{task:'政策文件传达落地',goal:'解读到位执行有反馈',detail:'①收到总部新政策/规范文件后，完成解读及校区落地执行；②落地过程中产生的问题，及时反馈中台'}]},
+    {phase:'成绩外化',tasks:[{task:'学员成绩/成果素材收集',goal:'口碑素材持续积累',detail:'①主动收集在读学员阶段性成绩/成果（竞赛获奖/进步案例等）；②整理素材并同步主管及品牌部用于口碑宣传和外化'}]}
+  ]}
+};
+
+const SOP_CATEGORIES = {
+  service:{title:'学员服务类',color:'#b5342e',sops:[
+    {name:'班课考勤回访SOP',trigger:'课程开始后学员未到',time:'40min内',risk:'高频',output:'考勤回访记录',link:'https://365.kdocs.cn/l/co1OhNk8vUGs',
+     steps:['课后5-10分钟启动考勤','打开系统筛选未到学员','电话联系家长核实原因','按优先级沟通：调课→录课→补课','系统登记处理结果','截图发上课群@老师','联系不上则短信留言+当天跟进']},
+    {name:'学员回访SOP',trigger:'学期固定回访节点',time:'按计划',risk:'中频',output:'学员回访表',link:'https://365.kdocs.cn/l/colBBGEWjYnA',
+     steps:['制定回访计划明确优先级','选择回访形式（电话/微信/当面）','逐一联系记录反馈','分类整理普遍问题与个性需求','问题处理并跟进闭环','优化课程或服务']},
+    {name:'调课SOP',trigger:'家长提出调课需求',time:'当日',risk:'高频',output:'调课记录',link:'https://365.kdocs.cn/l/ctpBeQfYWpAM',
+     steps:['教务接收调课需求→了解调课原因→查看系统判断是否满足调课需求','班课：满足→系统操作调课→沟通确认最终出勤结果→告知家长；不满足→告知结果→沟通课程处理方案（调课/补课等）','一对一：不满足→联系授课老师告知家长诉求→老师沟通其他方案→接受则同步教务操作，不接受则学期末退回课次','涉及退费：沟通单次课退费→执行退费流程','同步：调课完成后同步老师/前台/主管→更新系统记录→关注后续适应']},
+    {name:'转班SOP',trigger:'家长提出转班需求',time:'当日',risk:'高频',output:'转班记录',link:'https://365.kdocs.cn/l/cgIS57M4wYMo',
+     steps:['教务接收转班需求→了解学员转班原因','判断是否为异议问题：是→致歉安抚→了解异议原因→记录→协调处理；否→查看系统是否可操作转班','系统可转→操作转班→告知调整后课程信息（时间/地点/老师）→告知家长','系统不可转→判断原因（系统/规则）→反馈信息→校区副主管/副主管协助处理','处理完成后同步老师/前台→更新学员档案→关注后续适应']},
+    {name:'退费—单次课退费SOP',trigger:'学员缺课/家长提出单次课退费',time:'下节课前',risk:'高频',output:'单次课退费记录',link:'https://365.kdocs.cn/l/cvep7Cx4dP6Q',
+     steps:['教务接收退费/缺课信息→电话微信联系家长→了解原因','沟通优先级：方案1 调课→方案2 录课/线上直播→方案3 与老师协商补课','家长均不接受→与老师确认无法补课→沟通单次课退费→同步信息给老师→接收老师反馈','发送退费明细→核对出账方式→是否需填写收款信息→提交单次课退费流程','退费申请须写明：单次课退费原因+教务挽单动作+结果（示例：孩子身体原因，沟通调课及录课均不接受，申请单次课退费）','老师审批→财务审批→原路返回或转账退回→归档']},
+    {name:'退费—退学位SOP',trigger:'家长提出退费退学位诉求',time:'24h内',risk:'高频',output:'退费处理记录',link:'https://365.kdocs.cn/l/cfHVxGt90P7D',linkText:'点击查看SOP',
+     steps:['教务接收退费诉求→了解退费原因→提供解决方案→初步挽单','挽单成功→流程结束；不成功→发送退费明细→核对出账方式（原路/对公/数币/现金）','判断是否需填写收款信息→提交退费流程→老师24h内审批','老师审批通过→财务审批→原路返回或周二/周五转账→归档；老师驳回→查看原因→二次挽单或重提','校区副主管：审批+挽单沟通+确认最终结果','注意事项：退费须文字核对+家长确认后提交；流程驳回需核实；截止至结课下周数据固化前']},
+    {name:'开票处理SOP',trigger:'家长提出开票需求（普票/专票）',time:'按流程',risk:'中频',output:'开票记录',link:'https://365.kdocs.cn/l/cnzJjr7kzf6R',linkText:'点击查看SOP',
+     steps:['开票须知：开票按订单维度办理，金额为实缴且已课消金额；未上课无法开票；课消超一年联系邵静怡申请','电子普票：微信公众号【桃李未来课程】默认开出电子普票，服务类型为培训费','电子专票条件：缴费方式为对公转账+签署《培训服务合同》+提供《一般纳税人证明》','合同签署：确认收款账户→收集信息填写电子合同→发PDF给家长确认→打印一式两份签字盖章（骑缝章+公章）→邮寄至报业大厦13楼邵静怡','OA审批：在费控合同提交合同审批申请用章→上传电子合同附件→同步财务开票']},
+    {name:'客诉处理SOP',trigger:'家长表达不满或投诉',time:'24h内',risk:'中频',output:'客诉处理记录',link:'https://365.kdocs.cn/l/cpDC0wNGcyij',
+     steps:['教师端接收投诉→判定风险：低风险（教学疑问）→教师直接协调；中高风险→对接校区专属教务或反馈校区副主管','教务端接收→判断是否教学投诉→是，协调老师/主管处理；否→判断风险类型','低风险（一般异议/情绪问题）：教务安抚→提供方案→协调相关责任人处理→总结经验→填写问题收集表','中风险（情绪激动/威胁）：安抚→提供方案→不接受则15分钟内升级主管→主管介入→能否解决→不能则建专项群联合处理','高风险（群体聚集/媒体/暴力）：立即上报→保护现场/留证→15分钟内升级→主管建专项群→相关部门介入→联合出方案']},
+    {name:'学期开课准备工作SOP',trigger:'每学期开课前15天启动',time:'按节点',risk:'中频',output:'开课准备记录',link:'https://365.kdocs.cn/l/coQp2q1E6Juc',linkText:'点击查看SOP',
+     steps:['开课前15-8天：中台发布开课提醒任务→主管按校区分配名单→教务点对点发送提醒（企微+电话，含课表/时间/物品）','开课前15-10天：盘点校区剩余物资→补充缺失学习资料→分类定点摆放→不足则提交物资申请表','开课前12天：创建转班调课需求在线表格→同步教务登记需求→表格备注清晰→文字确认后发课表','开课前1-5天：二次检查调课转班表格→未解决需求告知家长进度→自检开课提醒全员覆盖→发教师端提醒→创建教室查询二维码']},
+  ]},
+  onsite:{title:'现场管理类',color:'#2d6b5e',sops:[
+    {name:'前台接待SOP',trigger:'客户到访/测试接待/咨询/在读事务',time:'即时',risk:'高频',output:'接待记录',links:[{text:'点击查看SOP',url:'https://365.kdocs.cn/l/cn3RE3JDZjJp'}],
+     steps:['客户到访→起立迎接→询问目的→判断客户类型','A.预约测试：核对预约→登记→准备试卷→带学员测试→收卷批改→同步结果→需课程方案转顾问','B.临时咨询：了解需求→登记信息→是否需测试→是则教务安排→否则转顾问咨询与转化','C.在读事务：识别事项（请假/调课/教材/缴费/反馈）→按流程办理','D.投诉/异常：记录问题→可处理则现场处理→否则转主管→跟进闭环','完成记录→礼貌送别→记录来访信息与后续跟进']},
+    {name:'校区开闭店SOP',trigger:'每日开店/闭店',time:'当日',risk:'高频',output:'开闭店检查记录',links:[{text:'点击查看流程图',url:'https://365.kdocs.cn/l/csiVxCQ345H4'},{text:'点击查看SOP',url:'https://365.kdocs.cn/l/ctvzG5TBOBoc'}],
+     steps:['开店：提前半小时到校→开灯/空调/新风/饮水机→查洗手间→查前台物资→开电脑设备→课前30分铃声播报','每日巡查：消防/设备/卫生/安全隐患','闭店：关无课教室→关全部设备→整理前台→保留一出口→清场确认→机器人发布提醒']},
+    {name:'校区日常巡查SOP',trigger:'每日/每周巡查',time:'每日',risk:'高频',output:'巡查记录',link:'https://365.kdocs.cn/l/cgM9DfmKQh9R',
+     steps:['排查消防通道/门窗/电源/监控','关注课间秩序和教室使用异常','发现隐患及时记录并处理','检查外包服务质量','每周深度检查与每日互补']},
+    {name:'校区突发事件应对SOP',trigger:'突发安全/现场问题',time:'立即',risk:'低频',output:'突发事件记录',link:'https://365.kdocs.cn/l/csY3yb1PdVQV',linkText:'点击查看SOP',
+     steps:['立即制止或处理→保护学员安全','通知主管→必要时联系家长','根据类别执行对应应急流程','形成事件记录→事后回访→归档']},
+    {name:'教室借用SOP',trigger:'需借用单个教室',time:'提前申请',risk:'中频',output:'教室借用记录',
+     steps:['进入企业微信工作台→校区教室借用','点击发起借用按钮','填写借用信息（日期/时间/校区/用途）','用途选其他须写明事由','提交后等待审批','企微首页收到借用结果通知']},
+    {name:'外包人员管理SOP',trigger:'外包人员到岗/日常管理',time:'每日',risk:'高频',output:'外包人员管理记录',links:[{text:'点击查看流程图',url:'https://365.kdocs.cn/l/chg3iGmUUsbG'},{text:'点击查看SOP',url:'https://365.kdocs.cn/l/cqSzDdrtwi1Y'}],
+     steps:['根据工作手册进行讲解→外包人员熟悉校区情况','制定排班与工作计划→每日监察工作进度与质量','工作质量是否满足需求：否→首次耐心督促讲解→多次记录问题→校区副主管确认后中台沟通更换','人员配置是否满足需求：否→校区副主管审核→中台沟通增配','每月25日核算出勤数据→汇总上报','注意事项：以实操演示为主讲解标准；出现私藏物品、与客户冲突等严重问题可立即更换；不可私自应允外包人员早退请假顶班']},
+    {name:'校区空间管理SOP',trigger:'每日巡查/空间使用管理',time:'每日',risk:'中频',output:'空间巡查记录',link:'https://365.kdocs.cn/l/crZWruksdHYQ',linkText:'点击查看完整的SOP',
+     steps:['每日巡查：检查照明/空调/卫生/安全隐患→监督保洁及时打扫→每日不少于3次','设备检查：桌椅/天花/门窗是否完好→损坏提报维修→功能正常无隐患','环境标准：桌椅定位整齐→桌面有序→墙面天花干净→地面通道畅通无杂物','私人物品：不得占用公共区域→违规回收至指定点→群内提醒领取→逾期1个月按流程处理','办公规范：保持安静→爱护公物→发现损坏及时反馈→垃圾随手入篓']},
+    {name:'工程维修SOP',trigger:'校区设施设备故障/损坏',time:'紧急2h内/常规每周',risk:'中频',output:'维修记录',link:'https://365.kdocs.cn/l/cozoGatylURp',linkText:'点击查看SOP',
+     steps:['发现故障→校区教务自行检查尝试解决→能解决则填写维修单扫描发送→完结','不能解决→判断：紧急维修→提交OA流程+电话通知维保专员→工程部安排2H内到场→24H解决问题','常规维修→提交OA流程→校区管理部中台周四下班前汇总申请→周五安排维修商确认方式→下周二至周四上门→提前电话联系教务','维修完成后检查效果和质量→填写维修单扫描发送→完结']},
+    {name:'校区迎检SOP',trigger:'政府机关到校检查',time:'立即启动',risk:'低频',output:'迎检记录与汇报',link:'https://365.kdocs.cn/l/chdlARpUc8J7',linkText:'点击查看完整的SOP',
+     steps:['礼貌接待引导至会客室','立即上报负责人（不独立决策）','提供基础合规文件','敏感数据说明需请示','安抚现场家长','确认停课则启动调课/线上课预案','事后形成迎检汇报']}
+  ]},
+  material:{title:'物资管理类',color:'#3d6f9e',sops:[
+    {name:'教材发放SOP',trigger:'新学期开课/插班报名',time:'开课前',risk:'中频',output:'教材发放记录',links:[{text:'点击查看流程图',url:'https://365.kdocs.cn/l/cgnq4cn83oQG'},{text:'点击查看SOP',url:'https://365.kdocs.cn/l/cpYzQ3LB0kol'}],
+     steps:['开课前10天信息同步','到货3天内100%清点','整理入库→导出考勤数据','制作分发条→核对库存','满足→发放拍照；不足→增印调拨','插班生每周五统一配送','扫码登记出库同步老师']},
+    {name:'物资盘点SOP',trigger:'月度/学期盘点',time:'按计划',risk:'中频',output:'物资盘点表',
+     steps:['每月20日系统发布盘点通知','3日内完成盘点','主管复核数据异常','编制盘点分析报告','次月10日前完成处置']},
+    {name:'积分卡发放SOP',trigger:'每周三(春秋)/首课前(寒暑)',time:'按节奏',risk:'中频',output:'积分卡发放记录',link:'https://365.kdocs.cn/l/cdirUF43Fi9r',
+     steps:['导出老师名单及学员数','准备卡片收纳盒与姓名贴纸','按班级人数标准定量发放','橡皮筋捆扎→群内通知领取','续报周/结课周增量由教学部统一提出','库存上锁保管不得超标准补发']}
+  ]},
+  activity:{title:'活动运营类',color:'#6d4f9e',sops:[
+    {name:'校区品牌活动SOP',trigger:'品牌活动执行',time:'活动前后',risk:'中频',output:'活动复盘记录',
+     steps:['确认活动方案与分工','物资准备+场地布置','签到接待+现场引导','秩序维护+家长接待','数据记录+物资归位','活动复盘+问题反馈']},
+    {name:'考务执行SOP',trigger:'统测/测评/考试',time:'活动周期',risk:'中频',output:'考务执行记录',links:[{text:'点击查看流程图',url:'https://365.kdocs.cn/l/ctsBLI5cM8OT'},{text:'点击查看SOP',url:'https://365.kdocs.cn/l/cmbVsZICVVOa'}],
+     steps:['考前：物料准备→试卷核对→物料分装→场地布置→相关人员签到→考务会→教室准备检查→入场指引','考中：考中事项协助→考场环境维护→到场数据填写→突发情况处理→考场整体巡检','考后：散场执行→试卷收集核查→档案袋打包邮寄→数据汇总→散场安排核验→档案袋抽检清点']},
+    {name:'招生活动支持SOP',trigger:'招生活动开展',time:'活动周期',risk:'中频',output:'活动名单与反馈',
+     steps:['活动名单确认→邀约通知','现场管理+突发处理','客户接待+信息登记','考务统筹配合','活动后名单跟进+转化处理']}
+  ]},
+  conversion:{title:'经营转化类',color:'#c98850',sops:[
+    {name:'续报窗口期执行动作SOP',trigger:'续报窗口期',time:'按节点',risk:'低频',output:'续报执行记录',link:'https://365.kdocs.cn/l/ciXjPjiAu1ja',
+     steps:['续报前：熟记窗口期时间/校历/优惠活动/业务规则→保障校区续报期间物资','续报中：协助老师续报通知→跟进家长续费意向→记录转化情况','续报后：汇总续报数据→反馈未续报原因→协同老师跟进']}
+  ]}
+};
+
+const KPIS = [
+  {name:'客户服务满意度',bar:'#b5342e',desc:'衡量家长对教务服务态度、响应速度、问题处理结果的满意情况'},
+  {name:'工作事项闭环质量',bar:'#2d6b5e',desc:'衡量教务负责事项是否做到有接收、有处理、有反馈、有记录，避免事项遗漏、搁置或超时'},
+  {name:'活动执行异常数',bar:'#3d6f9e',desc:'统计考务、品牌活动、招生活动等执行过程中的准备、现场、收尾异常事项'},
+  {name:'个人工作准确度',bar:'#6d4f9e',desc:'衡量教务在系统操作、信息登记、教材发放、调课转班、台账维护、数据提交等工作中的准确情况'},
+  {name:'校区运营标准化达成',bar:'#c98850',desc:'衡量前台接待、开闭店检查、校区巡查、教室管理、安全隐患处理、外包管理等现场工作是否符合标准'},
+  {name:'物资保障差错数',bar:'#1a5c6b',desc:'统计教材、教辅、办公物资、活动物资在需求提报、入库、发放、领用、盘点中的错漏事项'},
+  {name:'教务专业度考核',bar:'#4a3c6e',desc:'衡量教务对流程、产品、话术、系统操作、服务规范等内容的掌握程度'}
+];
+
+const RISKS = [
+  {type:'退费风险',icon:'💰',signals:['连续缺勤2次及以上','家长多次表达不满','学习效果明显不达预期','家长咨询退费规则','学员长期未参与课程互动'],
+   actions:['先了解真实原因','同步任课老师了解学情','与主管沟通处理策略','主动联系家长安抚','形成跟进记录'],
+   escalate:'教务 → 校区副主管 → 中台客诉/运营支持'},
+  {type:'投诉风险',icon:'💢',signals:['家长情绪激烈','家长在群内公开表达不满','家长要求找负责人','家长反复追问未解决问题'],
+   actions:['第一时间安抚情绪','不争辩不推责','记录核心诉求','同步主管介入','24小时内给到阶段性反馈'],
+   escalate:'教务 → 校区副主管 → 客诉组/事业部负责人'},
+  {type:'安全风险',icon:'🚨',signals:['学员走失','学员受伤','消防通道堵塞','设备损坏存在隐患'],
+   actions:['立即制止或处理','保护学员安全','第一时间通知主管','必要时联系家长','形成事件记录'],
+   escalate:'教务 → 校区副主管 '},
+  {type:'服务风险',icon:'🔍',signals:['家长消息长时间未回复','调课转班错误','考勤未跟进','问题多次反馈未处理'],
+   actions:['立即补救','主动致歉','明确处理时限','更新服务记录','复盘原因避免重复发生'],
+   escalate:'教务 → 校区副主管 '},
+  {type:'合规风险',icon:'📋',signals:['合同资料缺失','公示栏信息过期','消防台账未更新','收费退费口径不一致'],
+   actions:['立即停止不合规动作','补齐资料','同步主管','按总部标准修正','做好留痕'],
+   escalate:'教务 → 校区副主管 '}
+];
+
+const REDLINES = [
+  {title:'泄露或贩卖公司机密信息',items:['将客户名单、联系方式提供给竞品机构','将公司账号、系统权限借予他人使用','未经批准使用个人微信与客户私下沟通，7天内未添加企业微信']},
+  {title:'索要财物或接受不当利益',items:['收受合作方现金、有价证券、购物卡','接受旅游、高额宴请、娱乐消费等','向客户或合作方借款、非正常经济往来','接受客户赠予超过200元的礼品或礼金']},
+  {title:'私下收取学员或客户款项',items:['未通过公司账户，私下收取报名费、学费等任何款项']},
+  {title:'利用公司资源从事无关经营活动',items:['在公司场所或工作时间内从事微商、代购、兼职','利用公司客户资源推广个人或第三方业务','持续挪用、故意侵占公司物资']},
+  {title:'恶意破坏、篡改或删除业务数据',items:['因个人情绪故意删除系统关键数据','冒用他人账号或权限进行违规操作','伪造审批记录、考勤记录、课时记录']},
+  {title:'与客户或同事发生肢体冲突',items:['肢体冲突、与异性学生/家长过于亲昵接触、言语辱骂等']},
+  {title:'数据造假或虚假承诺',items:['将他人业绩叠加到个人名下以牟取高绩效','故意不录入、延迟录入或录入不准确的客户信息','随意承诺学位或盲目承诺课程效果']},
+  {title:'引导已报名其他业务线客户退费改报',items:['以活动名义主动联系已报名其他业务线客户并引导退费改报本业务线同科目课程']},
+  {title:'诋毁、贬低公司、部门、员工或教师',items:['在客户面前公开贬低教师教学水平、方法或品行','因个人原因否定授课教师专业性导致家长质疑']},
+  {title:'旷工',items:['完全不到岗且未履行任何请假手续']},
+  {title:'学员意外隐瞒不报',items:['学员在校区内发生意外时隐瞒不报、拒绝按流程处理或故意延误上报导致事态扩大']},
+  {title:'非全职人员出勤虚报',items:['对保洁、保安、活动兼职等非全职人员的出勤记录进行虚报或不实填写']}
+];
+const YELLOWLINES = [
+  {title:'着装与仪容仪表',items:['禁止穿背心、吊带、拖鞋及未过膝盖的短裤/超短裙','禁止夸张耳钉、帽子（前台值班区域）','禁止染鲜艳发色、做鲜艳美甲（裸色系除外），须遮挡明显纹身']},
+  {title:'前台行为规范',items:['禁止在前台等客户区域看视频、听音乐、玩游戏、睡觉、闲聊','禁止在前台大声喧哗、讨论客户或同事隐私','工作时间内非工作事项离岗（含就餐）累计不得超过2小时','迟到或早退超过30分钟按黄线处理']},
+  {title:'客户服务底线',items:['禁止对进入接待区的客户置之不理、懒怠解答或回避拒绝客户需求','禁止服务拖延、问题跟进不作为、事项无闭环','禁止未提前清晰告知课程规则、退费条款、课时权益等关键信息']},
+  {title:'内部协作禁止事项',items:['擅自抢单或推诿客户导致投诉','因个人利益拒绝为客户提供服务','私下承诺客户可插班满班课程','因个人矛盾拒绝为授课老师班级学员提供服务']},
+  {title:'线上行为规范',items:['禁止在客户群发布无关广告、链接、投票','禁止在企业微信朋友圈发布不当言论或图片','禁止在客户群内与家长争执、辩论或公开质疑公司政策','禁止未经授权发布未经审核的活动或政策信息']},
+  {title:'组织纪律与运营管理',items:['禁止散布消极言论、未经证实的谣言、个人薪资及绩效','禁止阻挠或拒绝配合公司检查工作','禁止无故缺席集体活动，一年内累计达3次','禁止会议/培训期间长时间使用手机或擅自离场超过10分钟','禁止物资台账记录不实或将公司物资挪作私用']}
+];
+const REDLINES_DETAIL = ['首次（未造成严重影响）：当月绩效评定为C，列入重点观察对象','再次发生：当月绩效C-，公司直接解除劳动合同，不支付补偿金','造成5000元以上损失或重大影响：不论次数，直接解除劳动合同并追究法律责任'];
+const YELLOWLINES_DETAIL = ['首次：当月绩效扣10分，影响晋升/加薪/年终奖资格','第二次：当月绩效C或C-，列入重点观察对象','第三次：当月绩效C-，公司直接解除劳动合同，不支付补偿金'];
+const APPEAL_PROCESS = '员工须在收到处罚通知后3个工作日内向直属上级和部门负责人提交申诉及证明材料。直属上级和部门负责人在5个工作日内完成复核。若申诉成功，撤销或调整原处罚；若驳回，维持原判定。';
+
+const TOOLS = {
+  systems:['业务管理系统','尘锋SCRM','WPS365','企业微信','阿里邮箱'],
+  forms:['学员承接记录表','考勤回访记录表','学员回访跟进表','风险学员跟进表','物资出入库登记表','校区巡查记录表','活动复盘表'],
+  sops:['班课考勤回访SOP','学员回访SOP','教材发放SOP','校区开闭店SOP','退费挽单SOP','客诉处理SOP'],
+  onboarding:[
+    {phase:'第1天',content:'理解岗位全貌、五大职责模块、学员生命周期'},
+    {phase:'第2-3天',content:'学习每日工作清单、开闭店、考勤回访、教材发放'},
+    {phase:'第4-7天',content:'跟岗学习家长沟通、调课转班、客诉处理'},
+    {phase:'第2周',content:'独立完成基础工作，并由主管抽查SOP执行情况'},
+    {phase:'第3-4周',content:'进入完整岗位实践，开始承担学员服务与现场管理闭环'}
+  ]
+};
+
+const WORK_MODULES = [
+  {name:'学员服务',weight:'45%',color:'#b5342e',bg:'#fef5f4',position:'围绕学员报名后的入读服务、开课准备、日常上课跟进和家长问题响应开展工作，按照入读服务→开课准备→在读跟进→家校响应→问题闭环五个阶段推进，保障学员顺利入读、稳定上课、问题及时闭环。',output:'学员顺利入读、稳定上课；家长问题有人响应、有人跟进、有结果。',items:[
+    {phase:'入读服务',task:'学员承接',detail:'对接学员报名后的关键信息，了解报名科目、班级安排、家长关注点、特殊需求等，明确后续服务安排，确保家长清楚后续由谁跟进、如何入读'},
+    {phase:'开课准备',task:'开课提醒',detail:'向家长同步开课时间、上课地点、班级老师、教材领取、入班注意事项等信息，帮助学员顺利进入课程'},
+    {phase:'在读跟进',task:'考勤回访',detail:'跟进学员出勤情况，对迟到、缺勤、频繁请假等异常情况进行回访和记录'},
+    {phase:'在读跟进',task:'学员回访',detail:'定期进行学员回访，了解家长/学员对课程的满意度及诉求'},
+    {phase:'在读跟进',task:'调课转班',detail:'协助家长完成调课、转班、补课等服务事项，确保安排清晰、信息同步到位'},
+    {phase:'家校响应',task:'家长响应',detail:'回应家长关于课程安排、考勤规则、服务流程、教材领取等常规咨询，及时识别家长诉求与潜在风险'},
+    {phase:'家校响应',task:'开票指引',detail:'根据家长开票需求，区分普票与专票办理路径，核对缴费方式、已课消金额及开票信息，协助完成合同签署与系统申请，跟进财务处理进度并反馈家长'},
+    {phase:'问题闭环',task:'退费操作',detail:'承接家长退费诉求，了解退费原因并进行挽单沟通，核对退费信息后按流程提交申请，跟进审批进度直至退费完成，全程留痕归档'},
+    {phase:'问题闭环',task:'问题闭环',detail:'对家长反馈的问题进行记录、跟进、协调处理，并及时反馈处理结果，确保问题有人响应、有人跟进、有结果'}
+  ]},
+  {name:'教学支持',weight:'20%',color:'#2d6b5e',bg:'#f5faf8',position:'围绕老师教学交付开展服务支持，做好课前信息同步、课中异常处理和课后学情跟进，保障教学服务顺利开展。',output:'老师教学交付更顺畅，家长获得及时反馈，学员学习过程中的异常能够被及时识别和处理。',items:[
+    {phase:'课前',task:'信息同步',detail:'向老师同步学员关注点、特殊情况、调课转班等信息，确保老师课前知悉班级动态'},
+    {phase:'课前',task:'统测升班',detail:'配合完成统测、升班、分层、测评等教学相关通知发布、名单确认和结果反馈，课前完成安排'},
+    {phase:'课中',task:'课堂异常',detail:'协助处理课堂中出现的缺勤、迟到、纪律、安全、情绪等异常情况，保障课堂正常进行'},
+    {phase:'课中',task:'课堂支持',detail:'课堂进行中的服务支持，如物品领用、打印复印、临时物资调配等即时响应'},
+    {phase:'课后',task:'学情反馈',detail:'承接家长对学习效果、课堂表现、作业完成等问题的反馈，协调老师提供专业回应并记录'},
+    {phase:'课后',task:'插班适应',detail:'关注插班学员入班后的适应情况，课后及时同步老师和家长，减少入班不适应'},
+    {phase:'课后',task:'续费支持',detail:'在服务过程中识别家长续费需求，协同老师推进续费工作，做好课后跟进'}
+  ]},
+  {name:'现场管理',weight:'15%',color:'#3d6f9e',bg:'#f5f7fb',position:'围绕校区日常接待、环境秩序、安全看护和基础运行开展管理工作，按开店→课中→闭店→巡查→外包五阶段有序执行。',output:'校区现场整洁有序，学员安全可控，家长到校体验稳定，现场问题能够及时处理。',items:[
+    {phase:'开店准备',task:'前台接待',detail:'起立迎接家长学员，引导至等候区或教室，承接咨询并协调现场安排'},
+    {phase:'开店准备',task:'开店检查',detail:'开店前检查环境、灯光、空调、教室、前台、设备等；闭店前完成复位和安全检查'},
+    {phase:'开店准备',task:'教室管理',detail:'检查教室桌椅、设备、卫生、物品摆放及课前课后使用情况，确保教学条件达标'},
+    {phase:'课中维护',task:'秩序维护',detail:'维护上下课动线、家长等候区、前台区域和公共区域秩序，避免拥堵混乱'},
+    {phase:'课中维护',task:'安全看护',detail:'关注学员跑动打闹、身体不适、独自离校、走失风险等，及时制止或上报处理'},
+    {phase:'安全巡查',task:'校区巡查',detail:'每日巡查公共区域、教室、走廊、卫生间等，发现问题及时处理并记录'},
+    {phase:'外包管理',task:'外包人员管理',detail:'检查保安保洁到岗、工作质量和服务状态，发现异常及时反馈校区副主管'},
+    {phase:'闭店收尾',task:'闭店检查',detail:'关闭设备、灯光、空调，确认无学员家长滞留，整理前台和公共区域，发布闭店提醒'},
+  ]},
+  {name:'物资保障',weight:'10%',color:'#6d4f9e',bg:'#f8f5fb',position:'围绕教材、教辅、办公用品、教学物资、活动物资及日常消耗品开展管理，按照需求确认、入库建账、领用发放、库存盘点、异常处理、专项保障六个阶段有序运转，确保物资不断档、不混乱、不浪费。',output:'物资不断档、不混乱、不浪费，教学、服务和活动所需物资能够及时支持到位。',items:[
+    {phase:'需求确认',task:'需求收集与提报',detail:'收集校区日常及临时物资需求，明确用途、数量、紧急程度和使用时间，按流程完成提报与跟进'},
+    {phase:'入库建账',task:'物资接收入库',detail:'对到货物资进行验收、登记、分类和存放，核对数量、规格、质量，确保物资来源清楚、数量准确、摆放有序'},
+    {phase:'入库建账',task:'台账维护',detail:'维护物资入库、领用、发放、盘点、报废等记录，确保物资去向清晰可追溯'},
+    {phase:'领用发放',task:'教材发放',detail:'根据学员报名、入班、插班、转班情况完成教材领取提醒、发放登记和缺漏反馈'},
+    {phase:'领用发放',task:'物资领用',detail:'根据校区日常运营需求，完成办公用品、教学用品、活动物资等领用、发放和登记'},
+    {phase:'库存盘点',task:'库存盘点',detail:'定期盘点各类物资库存，核对账实一致性，检查是否存在积压、损坏、过期、遗失或混放情况'},
+    {phase:'异常处理',task:'缺货与异常反馈',detail:'发现缺货、损耗、缺漏、损坏等问题时，及时反馈并跟进补充、调整或报废处理'},
+    {phase:'专项保障',task:'活动与项目物资',detail:'针对活动、考试、临时项目等特殊场景，提前准备物资，过程中支持使用，结束后完成回收、清点、归位和消耗记录'}
+  ]},
+  {name:'活动协同',weight:'10%',color:'#c98850',bg:'#fdf8f0',position:'围绕测评、体验课、讲座、家长会、结业活动、品牌活动、考务活动等场景开展现场支持，按活动前→活动中→活动后三阶段闭环执行。',output:'活动现场执行有序，家长和学员体验稳定，活动结束后信息、物资和待跟进事项能够闭环。',items:[
+    {phase:'活动前',task:'活动准备',detail:'确认活动名单，做好教室安排、人员分工、物资需求和现场动线安排等'},
+    {phase:'活动前',task:'场地布置',detail:'根据活动要求完成教室、前台、等候区、签到区、展示物料等布置'},
+    {phase:'活动中',task:'签到接待',detail:'负责家长和学员签到、身份核对、分流引导和现场接待'},
+    {phase:'活动中',task:'秩序维护',detail:'维护活动现场秩序，处理家长等候、学员分流、突发咨询和现场异常'},
+    {phase:'活动后',task:'场地复原',detail:'活动结束后完成教室、公共区域、物资和设备复位'},
+    {phase:'活动后',task:'活动复盘',detail:'记录活动异常、家长反馈、物资使用、现场问题和后续优化建议'}
+  ]}
+];
+
+const TABS = [
+  {id:'overview',icon:'📋',label:'岗位全貌'},
+  {id:'modules',icon:'📊',label:'五大工作模块'},
+  {id:'lifecycle',icon:'🔄',label:'经营执行链路'},
+  {id:'checklist',icon:'📅',label:'周期工作清单'},
+  {id:'sop',icon:'📖',label:'关键SOP中心'},
+  {id:'kpi',icon:'🎯',label:'KPI'},
+  {id:'risk',icon:'🛡',label:'风险预警'},
+  {id:'rules',icon:'⚖️',label:'红黄线'},
+  {id:'tools',icon:'🧰',label:'工具资源与新人'}
+];
+
+// ==================== STATE ====================
+let currentTab = 'overview';
+let selectedStage = 0;
+let selectedCadence = 'daily';
+let selectedSopCat = 'service';
+let selectedRisk = 0;
+let selectedModule = 0;
+let mobileNavInit = false;
+
+// ==================== RENDER ====================
+function initMobileNav() {
+  if (mobileNavInit) return; mobileNavInit = true;
+  const panel = document.getElementById('mobilePanel');
+  panel.innerHTML = TABS.map(t => `<a href="#" onclick="switchTab('${t.id}');toggleMobileNav()">${t.icon} ${t.label}</a>`).join('') + '<hr style="border-color:var(--stone);margin:6px 0;"><a href="#" onclick="preparePrint();toggleMobileNav()">📄 导出 PDF</a>';
+}
+function toggleMobileNav() {
+  initMobileNav();
+  document.getElementById('mobileOverlay').classList.toggle('show');
+  document.getElementById('mobilePanel').classList.toggle('show');
+}
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.view-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+  const panel = document.getElementById('mainPanel');
+  panel.style.opacity = '0'; panel.style.transform = 'translateY(8px)';
+  setTimeout(() => { renderAll(); panel.style.opacity = '1'; panel.style.transform = 'translateY(0)'; }, 200);
+}
+
+function selectCadence(k) { selectedCadence = k; updateCadenceNav(); renderChecklistDetail(); }
+function selectSopCat(k) { selectedSopCat = k; updateSopNav(); renderSopDetail(); }
+function selectRisk(i) { selectedRisk = i; updateRiskNav(); renderRiskDetail(); }
+
+// ==================== RENDER ALL ====================
+function renderAll() { renderSubFilter(); renderMainPanel(); }
+
+function renderSubFilter() {
+  const el = document.getElementById('subFilter');
+  const tab = TABS.find(t => t.id === currentTab);
+  const prefix = `<span style="background:var(--vermillion-deep);color:#fff;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;margin-right:8px;">${tab.icon} ${tab.label}</span>`;
+  if (currentTab === 'overview') el.innerHTML = prefix + '<span style="font-size:13px;color:var(--text-secondary);">工作手册总览：岗位定位 · 岗位价值 · 五大工作模块及占比 · 快捷跳转</span>';
+  else if (currentTab === 'lifecycle') el.innerHTML = prefix + '<span style="font-size:13px;color:var(--text-secondary);">校区经营执行链路——从线索获取到转介绍，8个阶段全流程，教务贯穿售后承接至转介绍</span>';
+  else if (currentTab === 'modules') el.innerHTML = prefix + '<span style="font-size:13px;color:var(--text-secondary);">学员服务运营45% · 校区现场管理20% · 物资后勤管理15% · 活动运营支持10% · </span>';
+  else if (currentTab === 'checklist') el.innerHTML = prefix + Object.entries(CHECKLIST).map(([k,v]) => `<span class="filter-chip ${k===selectedCadence?'active':''}" onclick="selectCadence('${k}')">${v.title}</span>`).join('');
+  else if (currentTab === 'sop') el.innerHTML = prefix + Object.entries(SOP_CATEGORIES).map(([k,v]) => `<span class="filter-chip ${k===selectedSopCat?'active':''}" onclick="selectSopCat('${k}')">${v.title}</span>`).join('');
+  else if (currentTab === 'kpi') el.innerHTML = prefix + '<span style="font-size:13px;color:var(--text-secondary);">2026年教务绩效指标——7项指标覆盖全维度，扣分制管理，0项达标</span>';
+  else if (currentTab === 'risk') el.innerHTML = prefix + RISKS.map((r,i) => `<span class="filter-chip ${i===selectedRisk?'active':''}" onclick="selectRisk(${i})">${r.icon} ${r.type}</span>`).join('');
+  else if (currentTab === 'risk') el.innerHTML = prefix + RISKS.map((r,i) => `<span class="filter-chip ${i===selectedRisk?'active':''}" onclick="selectRisk(${i})">${r.icon} ${r.type}</span>`).join('');
+  else if (currentTab === 'rules') el.innerHTML = prefix + '<span style="font-size:13px;color:var(--text-secondary);">红线一票否决 · 黄线警告整改 · 红线看性质，黄线看频次</span>';
+  else if (currentTab === 'tools') el.innerHTML = prefix + '<span style="font-size:13px;color:var(--text-secondary);">系统工具 · 常用表单 · 常用SOP · 新人上手路径——新人百宝箱</span>';
+}
+
+function renderMainPanel() {
+  const panel = document.getElementById('mainPanel');
+  if (currentTab === 'overview') renderOverview(panel);
+  else if (currentTab === 'modules') renderModules(panel);
+  else if (currentTab === 'lifecycle') renderLifecycle(panel);
+  else if (currentTab === 'checklist') renderChecklist(panel);
+  else if (currentTab === 'sop') renderSopCenter(panel);
+  else if (currentTab === 'kpi') renderKPI(panel);
+  else if (currentTab === 'risk') renderRisk(panel);
+  else if (currentTab === 'rules') renderRules(panel);
+  else if (currentTab === 'tools') renderTools(panel);
+}
+
+// ==================== TAB 2: MODULES ====================
+function selectModule(i) { selectedModule = i; updateModuleNav(); renderModuleDetail(); }
+function renderModules(panel) {
+  const navHTML = WORK_MODULES.map((m,i) => `
+    <div class="checklist-nav-item ${i===selectedModule?'active':''}" onclick="selectModule(${i})">${m.name}<br><span style="font-size:10px;color:var(--text-muted);">${m.weight}</span></div>`).join('');
+
+  panel.innerHTML = `
+    <div class="checklist-view">
+      <div class="checklist-nav"><div class="checklist-nav-title">五大模块</div>${navHTML}</div>
+      <div class="checklist-detail" id="moduleDetail"></div>
+    </div>`;
+  renderModuleDetail();
+}
+
+function renderModuleDetail() {
+  const el = document.getElementById('moduleDetail');
+  if (!el) return;
+  const m = WORK_MODULES[selectedModule];
+  if (!m) return;
+
+  const phaseColors = {'入读服务':'var(--vermillion)','开课准备':'var(--vermillion)','在读跟进':'var(--jade)','家校响应':'#3d6f9e','问题闭环':'#c98850','课前':'var(--vermillion)','课中':'var(--jade)','课后':'#3d6f9e','开店准备':'var(--vermillion)','课中维护':'var(--jade)','安全巡查':'#c98850','闭店收尾':'#3d6f9e','外包管理':'#6d4f9e','需求确认':'var(--vermillion)','入库建账':'var(--jade)','领用发放':'#3d6f9e','库存盘点':'#c98850','异常处理':'var(--vermillion-deep)','专项保障':'#6d4f9e','活动前':'var(--vermillion)','活动中':'var(--jade)','活动后':'#3d6f9e'};
+
+  const phases = [...new Set(m.items.map(it => it.phase))];
+  const phaseGroups = phases.map(ph => {
+    const tasks = m.items.filter(it => it.phase === ph);
+    const pc = phaseColors[ph] || 'var(--vermillion)';
+    return `<div style="margin-bottom:14px;">
+      <div style="font-size:12px;font-weight:700;color:${pc};margin-bottom:6px;display:flex;align-items:center;gap:8px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:${pc};display:inline-block;"></span>${ph}
+      </div>
+      ${tasks.map(t => `<div style="display:flex;gap:8px;padding:6px 0;border-bottom:1px dashed var(--stone);align-items:flex-start;">
+        <span style="font-weight:600;color:var(--text);min-width:70px;flex-shrink:0;font-size:12px;">${t.task}</span>
+        <span style="color:var(--text-secondary);line-height:1.7;font-size:11px;">${t.detail}</span>
+      </div>`).join('')}
+    </div>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+      <span style="background:${m.color};color:#fff;min-width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;">${selectedModule+1}</span>
+      <div>
+        <div style="font-size:17px;font-weight:700;color:var(--text);">${m.name}<span style="font-size:14px;color:${m.color};margin-left:10px;">${m.weight}</span></div>
+      </div>
+    </div>
+    <div style="font-size:12px;color:var(--text-secondary);line-height:1.8;margin-bottom:10px;padding:10px 14px;background:${m.bg};border-radius:8px;border-left:3px solid ${m.color};">📍 ${m.position}</div>
+    <div style="font-size:11px;color:var(--jade);margin-bottom:16px;padding:8px 12px;background:var(--jade-light);border-radius:6px;">✅ ${m.output}</div>
+    ${phaseGroups}
+  `;
+}
+
+function updateModuleNav() {
+  document.querySelectorAll('.checklist-nav .checklist-nav-item').forEach((el,i) => {
+    el.classList.toggle('active', i === selectedModule);
+  });
+}
+
+// ==================== TAB 1: OVERVIEW ====================
+function renderOverview(panel) {
+  const barsHTML = MODULES.map((m,i) => `
+    <div class="resp-bar-row">
+      <span class="resp-bar-label">${m.name}</span>
+      <div class="resp-bar-track"><div class="resp-bar-fill w${i+1}"></div></div>
+      <span class="resp-bar-pct">${m.weight}</span>
+    </div>
+    <div style="margin:2px 0 14px 115px;font-size:11px;color:var(--text-secondary);line-height:1.6;">${m.actions.join(' · ')}</div>`).join('');
+
+  panel.innerHTML = `
+    <div style="padding:24px 28px;">
+      <div style="background:var(--card);border:1px solid var(--stone);border-left:4px solid var(--vermillion);border-radius:12px;padding:24px 28px;margin-bottom:20px;">
+        <h3 style="margin:0 0 10px 0;">岗位定位</h3>
+        <div style="font-family:'Noto Serif SC',serif;font-size:17px;line-height:2;letter-spacing:0.5px;color:var(--text);">教务是校区教学交付与在读服务的运营支持岗位，围绕<strong style="color:var(--vermillion-deep);">学员服务、教学支持、现场管理、物资保障及活动协同</strong>开展工作，做好学员入读后的服务跟进、家校沟通与事务协调，保障课程服务顺畅落地，提升<strong style="color:var(--vermillion-deep);">学员稳定性、家长满意度与校区服务质量</strong>。</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:16px;">
+        <div class="card-box" style="margin-bottom:0;">
+          <h3>岗位价值</h3>
+          <div class="section-desc" style="font-size:13px;margin-bottom:14px;line-height:1.8;">教务是连接家长、学员、老师、顾问与校区管理的关键协同角色，核心价值在于通过专业服务与高效协同，保障学员稳定学习、家长问题闭环、老师教学顺畅和校区管理有序。</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:var(--vermillion-light);border-radius:8px;border-left:3px solid var(--vermillion);">
+              <span style="background:var(--vermillion);color:#fff;min-width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px;">1</span>
+              <div><span style="font-size:13px;font-weight:600;color:var(--vermillion-deep);">对学员：保障稳定学习</span><br><span style="font-size:11px;color:var(--text-secondary);line-height:1.7;">做好入读承接、开课提醒、考勤跟进、调课转班等服务，帮助学员顺利入读并持续学习。</span></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:var(--jade-light);border-radius:8px;border-left:3px solid var(--jade);">
+              <span style="background:var(--jade);color:#fff;min-width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px;">2</span>
+              <div><span style="font-size:13px;font-weight:600;color:var(--jade);">对家长：建立服务信任</span><br><span style="font-size:11px;color:var(--text-secondary);line-height:1.7;">及时响应家长问题，持续跟进并反馈结果，让家长感受到专业、负责和安心。</span></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:#eef3fa;border-radius:8px;border-left:3px solid #3d6f9e;">
+              <span style="background:#3d6f9e;color:#fff;min-width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px;">3</span>
+              <div><span style="font-size:13px;font-weight:600;color:#3d6f9e;">对老师：支持教学交付</span><br><span style="font-size:11px;color:var(--text-secondary);line-height:1.7;">同步学员信息、家长需求和异常情况，减少老师沟通成本，保障教学服务顺利开展。</span></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:var(--gold-light);border-radius:8px;border-left:3px solid var(--gold);">
+              <span style="background:var(--gold);color:#fff;min-width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px;">4</span>
+              <div><span style="font-size:13px;font-weight:600;color:#6b4f10;">对校区：保障有序运营</span><br><span style="font-size:11px;color:var(--text-secondary);line-height:1.7;">维护现场秩序、物资保障和风险协同，降低退费、投诉和现场管理风险。</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-box" style="margin-bottom:0;">
+          <h3>五大工作模块及占比</h3>
+          <div class="resp-bars">${barsHTML}</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+        <div onclick="switchTab('checklist')" style="border:1px solid var(--stone);border-radius:12px;padding:16px;background:var(--card);cursor:pointer;transition:all var(--transition);text-align:center;" onmouseover="this.style.borderColor='var(--vermillion)';this.style.boxShadow='var(--shadow)'" onmouseout="this.style.borderColor='var(--stone)';this.style.boxShadow='none'">
+          <div style="font-size:24px;margin-bottom:6px;">📅</div>
+          <div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:2px;">周期工作清单</div>
+          <div style="font-size:11px;color:var(--text-muted);">每日/每周/每月/学期</div>
+        </div>
+        <div onclick="switchTab('sop')" style="border:1px solid var(--stone);border-radius:12px;padding:16px;background:var(--card);cursor:pointer;transition:all var(--transition);text-align:center;" onmouseover="this.style.borderColor='var(--jade)';this.style.boxShadow='var(--shadow)'" onmouseout="this.style.borderColor='var(--stone)';this.style.boxShadow='none'">
+          <div style="font-size:24px;margin-bottom:6px;">📖</div>
+          <div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:2px;">关键SOP中心</div>
+          <div style="font-size:11px;color:var(--text-muted);">按场景查阅SOP</div>
+        </div>
+        <div onclick="switchTab('risk')" style="border:1px solid var(--stone);border-radius:12px;padding:16px;background:var(--card);cursor:pointer;transition:all var(--transition);text-align:center;" onmouseover="this.style.borderColor='#c98850';this.style.boxShadow='var(--shadow)'" onmouseout="this.style.borderColor='var(--stone)';this.style.boxShadow='none'">
+          <div style="font-size:24px;margin-bottom:6px;">🛡</div>
+          <div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:2px;">风险预警</div>
+          <div style="font-size:11px;color:var(--text-muted);">5类风险识别与应对</div>
+        </div>
+      </div>
+
+    </div>`;
+}
+
+// ==================== TAB 2: LIFECYCLE ====================
+function renderLifecycle(panel) {
+  const stages = [
+    {step:'线索获取\n与筛选',roles:[{name:'顾问',color:'#c98850'}],desc:'承接线索并判断有效性'},
+    {step:'售前沟通',roles:[{name:'顾问',color:'#c98850'}],desc:'需求沟通·意向评级·邀约诊断'},
+    {step:'售中沟通\n与转化',roles:[{name:'顾问',color:'#c98850'},{name:'教务',color:'#b5342e'}],desc:'测试体验·面咨·成交转化'},
+    {step:'售后承接\n与开课',roles:[{name:'教务',color:'#b5342e'},{name:'老师',color:'#3d6f9e'}],desc:'新报承接·开课提醒·首课保障'},
+    {step:'教学交付',roles:[{name:'老师',color:'#3d6f9e'},{name:'教务',color:'#b5342e'}],desc:'课堂教学与教务支持'},
+    {step:'课后服务\n与家校沟通',roles:[{name:'教务',color:'#b5342e'},{name:'老师',color:'#3d6f9e'}],desc:'课后反馈·家校服务·问题处理'},
+    {step:'续费扩科\n复购',roles:[{name:'顾问',color:'#c98850'},{name:'老师',color:'#3d6f9e'}],desc:'续费促进·扩科转化·复购跟进'},
+    {step:'老带新\n转介绍',roles:[{name:'顾问',color:'#c98850'},{name:'教务',color:'#b5342e'}],desc:'服务口碑维护·转介绍跟进'}
+  ];
+
+  const stageCards = stages.map((s, i) => `
+    <div style="flex-shrink:0;width:150px;background:#fff;border:1px solid var(--stone);border-radius:12px;overflow:hidden;transition:all var(--transition);box-shadow:0 2px 8px rgba(44,36,22,0.04);">
+      <div style="padding:10px 12px 6px;display:flex;align-items:center;gap:8px;">
+        <span style="background:var(--vermillion-deep);color:#fff;min-width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">${String(i+1).padStart(2,'0')}</span>
+        <span style="font-size:11px;font-weight:700;color:var(--text);line-height:1.4;white-space:pre-line;">${s.step}</span>
+      </div>
+      <div style="padding:4px 12px 8px;display:flex;flex-wrap:wrap;gap:4px;">
+        ${s.roles.map(r => `<span style="font-size:10px;padding:1px 8px;border-radius:10px;background:${r.color}15;color:${r.color};font-weight:600;">${r.name}</span>`).join('')}
+      </div>
+      <div style="padding:0 12px 10px;font-size:10px;color:var(--text-muted);line-height:1.4;">${s.desc}</div>
+    </div>`).join(`<div style="display:flex;align-items:center;flex-shrink:0;padding:0 2px;"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M6 4l6 6-6 6" stroke="%23b0a082" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>`);
+
+  panel.innerHTML = `
+    <div style="padding:24px 28px;">
+      <h3>校区经营执行链路</h3>
+      <div class="section-desc" style="margin-bottom:8px;">从线索获取到转介绍，8个阶段全流程。角色：<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#c98850;vertical-align:middle;margin:0 2px 0 8px;"></span>顾问 <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#b5342e;vertical-align:middle;margin:0 2px 0 8px;"></span>教务 <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3d6f9e;vertical-align:middle;margin:0 2px 0 8px;"></span>老师</div>
+
+      <div style="background:linear-gradient(135deg,var(--vermillion-light),#fef9f5);border:1px solid var(--stone);border-radius:14px;padding:16px;margin-bottom:16px;overflow-x:auto;">
+        <div style="display:flex;align-items:flex-start;gap:0;min-width:1000px;padding:4px 0;">
+          ${stageCards}
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div style="background:linear-gradient(135deg,var(--vermillion-light),#fef5f4);border:1px solid rgba(181,52,46,0.15);border-radius:12px;padding:16px 18px;">
+          <div style="font-size:13px;font-weight:700;color:var(--vermillion-deep);margin-bottom:8px;display:flex;align-items:center;gap:6px;">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--vermillion);display:inline-block;"></span>教顾运营组<span style="font-weight:400;font-size:11px;color:var(--text-muted);">（贯穿全阶段）</span>
+          </div>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.8;">
+            <div style="margin-bottom:4px;">教务/顾问工作标准 · 话术/工具/知识库 · 跨部门活动对接</div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;">
+              <span style="font-size:10px;padding:2px 8px;border-radius:8px;background:var(--vermillion-light);color:var(--vermillion-deep);">线索管理</span>
+              <span style="font-size:10px;padding:2px 8px;border-radius:8px;background:var(--vermillion-light);color:var(--vermillion-deep);">转化支持</span>
+              <span style="font-size:10px;padding:2px 8px;border-radius:8px;background:var(--vermillion-light);color:var(--vermillion-deep);">售后承接</span>
+              <span style="font-size:10px;padding:2px 8px;border-radius:8px;background:var(--vermillion-light);color:var(--vermillion-deep);">家校服务</span>
+              <span style="font-size:10px;padding:2px 8px;border-radius:8px;background:var(--vermillion-light);color:var(--vermillion-deep);">续费跟进</span>
+            </div>
+          </div>
+        </div>
+        <div style="background:linear-gradient(135deg,var(--jade-light),#f2faf7);border:1px solid rgba(45,107,94,0.15);border-radius:12px;padding:16px 18px;">
+          <div style="font-size:13px;font-weight:700;color:var(--jade);margin-bottom:8px;display:flex;align-items:center;gap:6px;">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--jade);display:inline-block;"></span>校区保障组<span style="font-weight:400;font-size:11px;color:var(--text-muted);">（贯穿全阶段）</span>
+          </div>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.8;">
+            <div style="margin-bottom:4px;">后勤保障 · 空间设施/安全合规 · 活动与项目保障 · 外包人员统筹</div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;">
+              <span style="font-size:10px;padding:2px 8px;border-radius:8px;background:var(--jade-light);color:var(--jade);">后勤保障</span>
+              <span style="font-size:10px;padding:2px 8px;border-radius:8px;background:var(--jade-light);color:var(--jade);">安全合规</span>
+              <span style="font-size:10px;padding:2px 8px;border-radius:8px;background:var(--jade-light);color:var(--jade);">活动保障</span>
+              <span style="font-size:10px;padding:2px 8px;border-radius:8px;background:var(--jade-light);color:var(--jade);">外包管理</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}function scrollToModule(i) {
+  const el = document.getElementById('mod'+i);
+  if (el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ==================== TAB 4: CHECKLIST ====================
+function renderChecklist(panel) {
+  const navHTML = Object.entries(CHECKLIST).map(([k,v]) => `
+    <div class="checklist-nav-item ${k===selectedCadence?'active':''}" onclick="selectCadence('${k}')">${v.title}</div>`).join('');
+  panel.innerHTML = `
+    <div class="checklist-view">
+      <div class="checklist-nav"><div class="checklist-nav-title">工作周期</div>${navHTML}</div>
+      <div class="checklist-detail" id="checklistDetail"></div>
+    </div>`;
+  renderChecklistDetail();
+}
+
+function renderChecklistDetail() {
+  const el = document.getElementById('checklistDetail');
+  if (!el) return;
+  const c = CHECKLIST[selectedCadence];
+  if (!c || !c.groups) return;
+  const total = c.groups.reduce((s,g)=>s+g.tasks.length,0);
+  const groupsHTML = c.groups.map(g => `
+    <div style="margin-bottom:16px;">
+      <div style="font-size:13px;font-weight:700;color:var(--vermillion-deep);margin-bottom:6px;">${g.phase}</div>
+      ${g.tasks.map(t => `
+        <details class="checklist-item" style="margin-bottom:4px;border:1px solid var(--stone);border-radius:8px;overflow:hidden;">
+          <summary style="padding:10px 14px;cursor:pointer;font-size:12px;font-weight:600;color:var(--text);background:var(--parchment-dark);list-style:none;display:flex;align-items:center;gap:8px;border-left:3px solid var(--jade);">
+            <span>${t.task}</span>
+            <span style="font-size:10px;color:var(--jade);font-weight:500;white-space:nowrap;flex-shrink:0;margin-left:auto;margin-right:4px;">${t.goal}</span>
+          </summary>
+          <div style="padding:10px 14px 10px 20px;font-size:11px;color:var(--text-secondary);line-height:1.9;border-top:1px solid var(--stone);background:var(--card);">${t.detail}</div>
+        </details>`).join('')}
+    </div>`).join('');
+  el.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <h3 style="margin:0;">${c.title}（${total}项）</h3>
+      <div style="display:flex;gap:6px;">
+        <span class="filter-chip" onclick="toggleAllChecklist(true)" style="border-style:dashed;">全部展开</span>
+        <span class="filter-chip" onclick="toggleAllChecklist(false)" style="border-style:dashed;">全部折叠</span>
+      </div>
+    </div>
+    <div class="section-desc">${c.goal}——每项可点击展开查看详细操作说明</div>
+    ${groupsHTML}
+    <div style="text-align:center;margin-top:18px;">
+      <span class="filter-chip" onclick="document.getElementById('checklistDetail').scrollTo({top:0,behavior:'smooth'})" style="border-style:dashed;">回到顶部</span>
+    </div>`;
+}
+function toggleAllChecklist(open) {
+  document.querySelectorAll('.checklist-item').forEach(d => { d.open = open; });
+}
+function updateCadenceNav() {
+  document.querySelectorAll('.checklist-nav-item').forEach(el => {
+    el.classList.toggle('active', el.textContent === CHECKLIST[selectedCadence]?.title);
+  });
+}
+
+// ==================== TAB 5: SOP CENTER ====================
+function renderSopCenter(panel) {
+  const navHTML = Object.entries(SOP_CATEGORIES).map(([k,v]) => `
+    <div class="sop-center-nav-item ${k===selectedSopCat?'active':''}" onclick="selectSopCat('${k}')">${v.title} <span style="font-size:10px;color:var(--text-muted);">${v.sops.length}</span></div>`).join('');
+  panel.innerHTML = `
+    <div class="sop-center-view">
+      <div class="sop-center-nav"><div class="sop-center-nav-title">SOP分类</div>${navHTML}</div>
+      <div class="sop-center-detail" id="sopDetail"></div>
+    </div>`;
+  renderSopDetail();
+}
+
+function renderSopDetail() {
+  const el = document.getElementById('sopDetail');
+  if (!el) return;
+  const cat = SOP_CATEGORIES[selectedSopCat];
+  const sortedSops = [...cat.sops].sort((a,b) => {
+    const order = {'高频':0,'中频':1,'低频':2};
+    const va = order[a.risk] != null ? order[a.risk] : 2;
+    const vb = order[b.risk] != null ? order[b.risk] : 2;
+    return va - vb;
+  });
+  const itemsHTML = sortedSops.map((s,i) => {
+    const isHigh = s.risk === '高频';
+    return `
+    <details class="checklist-item" style="margin-bottom:6px;border:1px solid var(--stone);border-left:3px solid ${isHigh?'var(--vermillion)':s.risk==='中频'?'var(--gold)':'#b0a998'};border-radius:0 8px 8px 0;overflow:hidden;">
+      <summary style="padding:10px 14px;cursor:pointer;font-size:13px;font-weight:${isHigh?'700':'600'};color:${isHigh?'var(--vermillion-deep)':'var(--text)'};background:var(--parchment-dark);list-style:none;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <span>${s.name}<span style="font-weight:400;font-size:11px;color:var(--text-muted);margin-left:8px;">触发节点：${s.trigger}</span></span>
+        <div style="display:flex;gap:4px;flex-shrink:0;align-items:center;margin-left:auto;">
+          ${isHigh?'<span style="font-size:12px;">🔥</span>':''}
+          <span style="font-size:10px;background:${isHigh?'var(--vermillion-light)':s.risk==='中频'?'var(--gold-light)':'#e8e2d9'};color:${isHigh?'var(--vermillion-deep)':s.risk==='中频'?'#6b4f10':'var(--text-muted)'};padding:2px 8px;border-radius:10px;">${s.risk}</span>
+          <span style="font-size:10px;background:var(--parchment-dark);color:var(--text-muted);padding:2px 8px;border-radius:10px;">${s.time}</span>
+        </div>
+      </summary>
+      <div style="padding:14px 16px;font-size:11px;line-height:1.9;border-top:1px solid var(--stone);background:var(--card);">
+        <div style="font-weight:600;color:var(--vermillion-deep);margin-bottom:6px;">操作步骤</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">${s.steps.map((st,j)=>`<div style="display:flex;gap:8px;padding:6px 10px;background:var(--parchment-dark);border-radius:6px;align-items:flex-start;"><span style="background:${isHigh?'var(--vermillion)':s.risk==='中频'?'var(--gold)':'var(--jade)'};color:#fff;min-width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;">${j+1}</span><span style="color:var(--text-secondary);">${st}</span></div>`).join('')}</div>
+        <div style="margin-top:8px;padding:6px 10px;background:var(--jade-light);border-radius:6px;font-size:11px;">${s.links ? s.links.map(l=>`<a href="${l.url}" target="_blank" style="color:var(--vermillion-deep);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:4px;margin-right:24px;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'"><span style="display:inline-block;animation:bounceRight 0.8s infinite;">👉</span> ${l.text}</a>`).join('<span style="color:var(--stone);margin:0 8px;">|</span>') : (s.link ?`<a href="${s.link}" target="_blank" style="color:var(--vermillion-deep);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:4px;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'"><span style="display:inline-block;animation:bounceRight 0.8s infinite;">👉</span> ${s.linkText||'点击查看流程图'}</a>` : s.output)}</div>
+        <div style="text-align:center;margin-top:8px;"><span class="filter-chip" onclick="this.closest('details').open=false" style="font-size:10px;">收起</span></div>
+      </div>
+    </details>`;
+  }).join('');
+  el.innerHTML = `<div style="margin-bottom:10px;"><input type="text" placeholder="搜索SOP..." oninput="filterSOPs(this.value)" style="width:100%;padding:7px 12px;border:1px solid var(--stone);border-radius:8px;font-size:12px;font-family:inherit;background:var(--parchment);"></div>
+    <h3>${cat.title}（${cat.sops.length}项）</h3>
+    <div style="display:flex;gap:6px;margin-bottom:12px;">
+      <span class="filter-chip" onclick="document.querySelectorAll('#sopDetail .checklist-item').forEach(d=>d.open=true)">全部展开</span>
+      <span class="filter-chip" onclick="document.querySelectorAll('#sopDetail .checklist-item').forEach(d=>d.open=false)">全部折叠</span>
+    </div>${itemsHTML}`;
+}
+
+function filterSOPs(query) {
+  const items = document.querySelectorAll('#sopDetail .checklist-item');
+  const q = query.toLowerCase();
+  items.forEach(item => {
+    const text = item.textContent.toLowerCase();
+    item.style.display = q === '' || text.includes(q) ? '' : 'none';
+  });
+}
+function updateSopNav() {
+  document.querySelectorAll('.sop-center-nav-item').forEach(el => {
+    const cat = Object.entries(SOP_CATEGORIES).find(([k,v]) => el.textContent.includes(v.title));
+    el.classList.toggle('active', cat && cat[0] === selectedSopCat);
+  });
+}
+
+// ==================== TAB 6: KPI ====================
+function renderKPI(panel) {
+  const cardsHTML = KPIS.map((k,i) => `
+    <div style="display:flex;align-items:center;gap:14px;padding:16px 20px;background:var(--card);border:1px solid var(--stone);border-radius:12px;border-left:4px solid ${k.bar};transition:all 0.3s ease;" onmouseover="this.style.boxShadow='0 4px 16px rgba(44,36,22,0.08)';this.style.transform='translateX(3px)';" onmouseout="this.style.boxShadow='none';this.style.transform='translateX(0)';">
+      <span style="background:${k.bar};color:#fff;min-width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;">${i+1}</span>
+      <div><span style="font-size:14px;font-weight:600;color:var(--text);">${k.name}</span><br><span style="font-size:11px;color:var(--text-muted);line-height:1.5;">${k.desc}</span></div>
+    </div>`).join('');
+
+  panel.innerHTML = `
+    <div style="padding:24px 28px;">
+      <h3>2026年教务绩效指标</h3>
+      <div class="section-desc">7项指标，覆盖服务、执行、运营、物资、专业度全维度，扣分制管理。</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">${cardsHTML}</div>
+    </div>`;
+}
+
+// ==================== TAB 7: RISK ====================
+function renderRisk(panel) {
+  const navHTML = RISKS.map((r,i) => `
+    <div class="sop-center-nav-item ${i===selectedRisk?'active':''}" onclick="selectRisk(${i})">${r.icon} ${r.type}</div>`).join('');
+  panel.innerHTML = `
+    <div class="sop-center-view">
+      <div class="sop-center-nav"><div class="sop-center-nav-title">风险类型</div>${navHTML}</div>
+      <div class="sop-center-detail" id="riskDetail"></div>
+    </div>`;
+  renderRiskDetail();
+}
+function renderRiskDetail() {
+  const el = document.getElementById('riskDetail');
+  if (!el) return;
+  const r = RISKS[selectedRisk];
+  el.innerHTML = `
+    <h3><span class="risk-dot" style="background:var(--vermillion);"></span>${r.icon} ${r.type}</h3>
+    <div class="card-box" style="border-left:3px solid var(--vermillion);">
+      <strong style="color:var(--vermillion-deep);">预警信号</strong>
+      <ul style="padding-left:16px;font-size:12px;color:var(--text-secondary);line-height:2;">${r.signals.map(s=>`<li>${s}</li>`).join('')}</ul>
+    </div>
+    <div class="card-box" style="border-left:3px solid var(--jade);">
+      <strong style="color:var(--jade);">处理动作</strong>
+      <ul style="padding-left:16px;font-size:12px;color:var(--text-secondary);line-height:2;">${r.actions.map(a=>`<li>${a}</li>`).join('')}</ul>
+    </div>`;
+}
+function updateRiskNav() {
+  document.querySelectorAll('.sop-center-nav-item').forEach((el,i) => el.classList.toggle('active', i===selectedRisk));
+}
+
+// ==================== TAB 8: RULES ====================
+function renderRules(panel) {
+  const redHTML = REDLINES.map((r,i) => `
+    <details class="checklist-item" open style="margin-bottom:4px;border:1px solid var(--stone);border-left:3px solid var(--vermillion);border-radius:0 8px 8px 0;overflow:hidden;">
+      <summary style="padding:10px 14px;cursor:pointer;font-size:12px;font-weight:600;color:var(--vermillion-deep);background:var(--parchment-dark);list-style:none;display:flex;align-items:center;gap:8px;">
+        <span style="background:var(--vermillion);color:#fff;padding:1px 7px;border-radius:10px;font-size:10px;">红线${String(i+1).padStart(2,'0')}</span>${r.title}
+      </summary>
+      <div style="padding:10px 14px 10px 24px;font-size:11px;color:var(--text-secondary);line-height:1.9;border-top:1px solid var(--stone);background:var(--card);">
+        <ul style="margin:0;padding-left:16px;">${r.items.map(x=>`<li>${x}</li>`).join('')}</ul>
+      </div>
+    </details>`).join('');
+  const yellowHTML = YELLOWLINES.map((y,i) => `
+    <details class="checklist-item" open style="margin-bottom:4px;border:1px solid var(--stone);border-left:3px solid #b8942e;border-radius:0 8px 8px 0;overflow:hidden;">
+      <summary style="padding:10px 14px;cursor:pointer;font-size:12px;font-weight:600;color:#6b4f10;background:var(--parchment-dark);list-style:none;display:flex;align-items:center;gap:8px;">
+        <span style="background:#b8942e;color:#fff;padding:1px 7px;border-radius:10px;font-size:10px;">黄线${String(i+1).padStart(2,'0')}</span>${y.title}
+      </summary>
+      <div style="padding:10px 14px 10px 24px;font-size:11px;color:var(--text-secondary);line-height:1.9;border-top:1px solid var(--stone);background:var(--card);">
+        <ul style="margin:0;padding-left:16px;">${y.items.map(x=>`<li>${x}</li>`).join('')}</ul>
+      </div>
+    </details>`).join('');
+  panel.innerHTML = `
+    <div style="padding:20px 24px;">
+      <div style="display:flex;gap:6px;margin-bottom:14px;">
+        <span class="filter-chip" onclick="document.querySelectorAll('.checklist-item').forEach(d=>d.open=true)">全部展开</span>
+        <span class="filter-chip" onclick="document.querySelectorAll('.checklist-item').forEach(d=>d.open=false)">全部折叠</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+        <div class="card-box" style="border-left:3px solid var(--vermillion);margin-bottom:0;">
+          <h3>红线行为（共${REDLINES.length}条 · 一票否决）</h3>
+          <div class="section-desc" style="color:var(--vermillion-deep);">触碰红线，直接进入纪律处理流程。</div>
+          ${redHTML}
+          <div style="margin-top:12px;padding:10px 14px;background:var(--vermillion-light);border-radius:8px;font-size:11px;line-height:1.8;">
+            <strong style="color:var(--vermillion-deep);">红线处罚规则</strong>
+            <ul style="margin:4px 0 0 16px;color:var(--text-secondary);">${REDLINES_DETAIL.map(x=>`<li>${x}</li>`).join('')}</ul>
+          </div>
+        </div>
+        <div class="card-box" style="border-left:3px solid #b8942e;margin-bottom:0;">
+          <h3>黄线行为（共${YELLOWLINES.length}类 · 警告整改）</h3>
+          <div class="section-desc" style="color:#6b4f10;">触碰黄线，纳入月度考核扣分，并要求整改。</div>
+          ${yellowHTML}
+          <div style="margin-top:12px;padding:10px 14px;background:var(--gold-light);border-radius:8px;font-size:11px;line-height:1.8;">
+            <strong style="color:#6b4f10;">黄线处罚规则</strong>
+            <ul style="margin:4px 0 0 16px;color:var(--text-secondary);">${YELLOWLINES_DETAIL.map(x=>`<li>${x}</li>`).join('')}</ul>
+          </div>
+        </div>
+      </div>
+      <div class="card-box" style="border-left:3px solid var(--ink);">
+        <h3>申诉渠道</h3>
+        <div class="section-desc">${APPEAL_PROCESS}</div>
+      </div>
+    </div>`;
+}
+
+// ==================== TAB 9: TOOLS ====================
+function renderTools(panel) {
+  panel.innerHTML = `
+    <div style="padding:20px 24px;">
+      <details open class="checklist-item" style="margin-bottom:10px;border:1px solid var(--stone);border-radius:10px;overflow:hidden;">
+        <summary style="padding:12px 16px;cursor:pointer;font-size:14px;font-weight:700;color:var(--vermillion-deep);background:var(--parchment-dark);list-style:none;">系统工具（${TOOLS.systems.length}个）</summary>
+        <div style="padding:14px 16px;display:flex;flex-wrap:wrap;gap:8px;">${TOOLS.systems.map(s=>`<span style="background:var(--vermillion-light);color:var(--vermillion-deep);padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;">${s}</span>`).join('')}</div>
+      </details>
+      <details class="checklist-item" style="margin-bottom:10px;border:1px solid var(--stone);border-radius:10px;overflow:hidden;">
+        <summary style="padding:12px 16px;cursor:pointer;font-size:14px;font-weight:700;color:var(--vermillion-deep);background:var(--parchment-dark);list-style:none;">常用表单（${TOOLS.forms.length}个）</summary>
+        <div style="padding:14px 16px;display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:12px;color:var(--text-secondary);">${TOOLS.forms.map(f=>`<div style="padding:8px 12px;background:var(--parchment-dark);border-radius:6px;">${f}</div>`).join('')}</div>
+      </details>
+      <details class="checklist-item" style="margin-bottom:10px;border:1px solid var(--stone);border-radius:10px;overflow:hidden;">
+        <summary style="padding:12px 16px;cursor:pointer;font-size:14px;font-weight:700;color:var(--vermillion-deep);background:var(--parchment-dark);list-style:none;">常用SOP（${TOOLS.sops.length}个）</summary>
+        <div style="padding:14px 16px;display:flex;flex-wrap:wrap;gap:6px;">${TOOLS.sops.map(s=>`<span style="background:var(--vermillion-light);color:var(--vermillion-deep);padding:5px 12px;border-radius:10px;font-size:11px;font-weight:500;">${s}</span>`).join('')}</div>
+      </details>
+      <details open class="checklist-item" style="border:1px solid var(--stone);border-radius:10px;overflow:hidden;">
+        <summary style="padding:12px 16px;cursor:pointer;font-size:14px;font-weight:700;color:var(--vermillion-deep);background:var(--parchment-dark);list-style:none;">新人上岗建议</summary>
+        <div style="padding:14px 16px;">${TOOLS.onboarding.map(o=>`<div style="display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed var(--stone);font-size:13px;"><span style="font-weight:700;color:var(--vermillion-deep);min-width:60px;">${o.phase}</span><span style="color:var(--text-secondary);">${o.content}</span></div>`).join('')}</div>
+      </details>
+    </div>`;
+}
+
+// ==================== PRINT ====================
+function preparePrint() {
+  document.title = '校区教务作战手册';
+  const pc = document.getElementById('printContainer');
+  pc.innerHTML = '<div style="font-family:sans-serif;max-width:900px;margin:0 auto;padding:20px;color:#2c2416;"><h1 style="text-align:center;color:#7a1a1a;">校区教务作战手册</h1><p style="text-align:center;color:#9b8e7a;">桃李未来 · 学科培优事业部</p></div>';
+  setTimeout(() => window.print(), 300);
+}
+
+function initTabs() {
+  document.getElementById('viewTabs').innerHTML = TABS.map(t =>
+    `<button class="view-tab ${t.id===currentTab?'active':''}" data-tab="${t.id}" onclick="switchTab('${t.id}')"><span class="tab-icon">${t.icon}</span>${t.label}</button>`
+  ).join('');
+}
+initTabs(); renderAll();
+</script>
+</body>
+</html>
