@@ -1080,9 +1080,10 @@ function renderRules(panel) {
     </details>`).join('');
   panel.innerHTML = `
     <div style="padding:20px 24px;">
-      <div style="display:flex;gap:6px;margin-bottom:14px;">
+      <div style="display:flex;gap:6px;margin-bottom:14px;align-items:center;flex-wrap:wrap;">
         <span class="filter-chip" onclick="document.querySelectorAll('.checklist-item').forEach(d=>d.open=true)">全部展开</span>
         <span class="filter-chip" onclick="document.querySelectorAll('.checklist-item').forEach(d=>d.open=false)">全部折叠</span>
+        <a href="https://365.kdocs.cn/l/cpNy3gWoAPSu" target="_blank" style="font-size:11px;color:var(--vermillion-deep);text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:4px;margin-left:auto;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">📄 点击查看完整红黄线制度</a>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
         <div class="card-box" style="border-left:3px solid var(--vermillion);margin-bottom:0;">
