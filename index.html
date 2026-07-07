@@ -466,11 +466,11 @@ const SOP_CATEGORIES = {
      steps:['接收退费/缺课信息→电话微信联系家长→了解缺课原因→判断挽单空间','沟通方案按优先级：调课→录课/直播→补课→退费，不得直接同意退费','与老师确认无法补课后→沟通单次课退费→同步信息给老师→接收老师反馈','核对退费明细：金额/支付方式/收款账户→家长确认后提交退费流程','退费流程须在当次课考勤未到且下次课考勤前提交','财务审批→原路退回或周二/周五转账→归档','连续3次缺勤需先联系老师确认是否退学位→不退学位则老师提供主管沟通截图→按单次课退费办理']},
     {name:'常规退学位SOP',trigger:'家长提出退费退学位诉求',time:'24h内',risk:'高频',output:'退费处理记录',link:'https://365.kdocs.cn/l/cmzoBJAVYGQD',
      steps:['教务接收退费诉求→了解退费原因→提供解决方案→初步挽单','挽单成功→流程结束；不成功→发送退费明细→核对出账方式（原路/对公/数币/现金）','判断是否需填写收款信息→提交退费流程→老师24h内审批','老师审批通过→财务审批→原路返回或周二/周五转账→归档；老师驳回→查看原因→二次挽单或重提','校区主管：审批+挽单沟通+确认最终结果','注意事项：退费须文字核对+家长确认后提交；流程驳回需核实；截止至结课下周数据固化前']},
-    {name:'开票处理SOP',trigger:'家长提出开票需求（普票/专票）',time:'按流程',risk:'中频',output:'开票记录',link:'https://365.kdocs.cn/l/cnzJjr7kzf6R',linkText:'点击查看SOP',
+    {name:'开票处理SOP',trigger:'家长提出开票需求（普票/专票）',time:'按流程',risk:'中频',output:'开票记录',link:'https://365.kdocs.cn/l/cnzJjr7kzf6R',
      steps:['开票须知：开票按订单维度办理，金额为实缴且已课消金额；未上课无法开票；课消超一年联系邵静怡申请','电子普票：微信公众号【桃李未来课程】默认开出电子普票，服务类型为培训费','电子专票条件：缴费方式为对公转账+签署《培训服务合同》+提供《一般纳税人证明》','合同签署：确认收款账户→收集信息填写电子合同→发PDF给家长确认→打印一式两份签字盖章（骑缝章+公章）→邮寄至报业大厦13楼邵静怡','OA审批：在费控合同提交合同审批申请用章→上传电子合同附件→同步财务开票']},
     {name:'客诉处理SOP',trigger:'家长表达不满或投诉',time:'24h内',risk:'中频',output:'客诉处理记录',link:'https://365.kdocs.cn/l/cpDC0wNGcyij',
      steps:['教师端接收投诉→判定风险：低风险（教学疑问）→教师直接协调；中高风险→对接校区专属教务或反馈校区副主管','教务端接收→判断是否教学投诉→是，协调老师/主管处理；否→判断风险类型','低风险（一般异议/情绪问题）：教务安抚→提供方案→协调相关责任人处理→总结经验→填写问题收集表','中风险（情绪激动/威胁）：安抚→提供方案→不接受则15分钟内升级主管→主管介入→能否解决→不能则建专项群联合处理','高风险（群体聚集/媒体/暴力）：立即上报→保护现场/留证→15分钟内升级→主管建专项群→相关部门介入→联合出方案']},
-    {name:'学期开课准备工作SOP',trigger:'每学期开课前15天启动',time:'按节点',risk:'中频',output:'开课准备记录',link:'https://365.kdocs.cn/l/coQp2q1E6Juc',linkText:'点击查看SOP',
+    {name:'学期开课准备工作SOP',trigger:'每学期开课前15天启动',time:'按节点',risk:'中频',output:'开课准备记录',link:'https://365.kdocs.cn/l/coQp2q1E6Juc',
      steps:['开课前15-8天：中台发布开课提醒任务→主管按校区分配名单→教务点对点发送提醒（企微+电话，含课表/时间/物品）','开课前15-10天：盘点校区剩余物资→补充缺失学习资料→分类定点摆放→不足则提交物资申请表','开课前12天：创建转班调课需求在线表格→同步教务登记需求→表格备注清晰→文字确认后发课表','开课前1-5天：二次检查调课转班表格→未解决需求告知家长进度→自检开课提醒全员覆盖→发教师端提醒→创建教室查询二维码']}
   ]},
   onsite:{title:'现场管理类',color:'#2d6b5e',sops:[
@@ -486,15 +486,15 @@ const SOP_CATEGORIES = {
      steps:['每日巡查：检查照明/空调/卫生/安全隐患→监督保洁及时打扫→每日不少于3次','设备检查：桌椅/天花/门窗是否完好→损坏提报维修→功能正常无隐患','环境标准：桌椅定位整齐→桌面有序→墙面天花干净→地面通道畅通无杂物','私人物品：不得占用公共区域→违规回收至指定点→群内提醒领取→逾期1个月按流程处理','办公规范：保持安静→爱护公物→发现损坏及时反馈→垃圾随手入篓']},
     {name:'教室借用SOP',trigger:'需借用单个教室',time:'提前申请',risk:'中频',output:'教室借用记录',
      steps:['进入企业微信工作台→校区教室借用','点击发起借用按钮','填写借用信息（日期/时间/校区/用途）','用途选其他须写明事由','提交后等待审批','企微首页收到借用结果通知']},
-    {name:'非全职人员管理SOP',trigger:'非全职人员到岗/日常管理',time:'每日',risk:'中频',output:'非全职人员管理记录',links:[{text:'校区非全职人员工作指导手册',url:'https://365.kdocs.cn/l/chJr2DlXX0G2'},{text:'校区非全职人员考勤管理流程图',url:'https://365.kdocs.cn/l/crZ9QH5EWYDz'}],
+    {name:'非全职人员管理SOP',trigger:'非全职人员到岗/日常管理',time:'每日',risk:'中频',output:'非全职人员管理记录',link:'https://365.kdocs.cn/l/chJr2DlXX0G2',
      steps:['根据工作手册进行讲解→非全职人员熟悉校区情况','制定排班与工作计划→每日监察工作进度与质量','工作质量是否满足需求：否→首次耐心督促讲解→多次记录问题→校区主管确认后中台沟通更换','人员配置是否满足需求：否→校区主管审核→中台沟通增配','每月25日核算出勤数据→汇总上报','注意事项：以实操演示为主讲解标准；出现私藏物品、与客户冲突等严重问题可立即更换；不可私自应允非全职人员早退请假顶班']},
-    {name:'校区迎检SOP',trigger:'政府机关到校检查',time:'立即启动',risk:'低频',output:'迎检记录与汇报',link:'https://365.kdocs.cn/l/chdlARpUc8J7',linkText:'点击查看完整的SOP',
+    {name:'校区迎检SOP',trigger:'政府机关到校检查',time:'立即启动',risk:'低频',output:'迎检记录与汇报',link:'https://365.kdocs.cn/l/chdlARpUc8J7',
      steps:['礼貌接待引导至会客室','立即上报负责人（不独立决策）','提供基础合规文件','敏感数据说明需请示','安抚现场家长','确认停课则启动调课/线上课预案','事后形成迎检汇报']}
   ]},
   material:{title:'物资管理类',color:'#3d6f9e',sops:[
     {name:'校区积分卡发放SOP',trigger:'每周三(春秋)/首课前(寒暑)',time:'按节奏',risk:'中频',output:'积分卡发放记录',link:'https://365.kdocs.cn/l/cktqKRgl2sDp',
      steps:['导出老师名单及学员数','准备卡片收纳盒与姓名贴纸','按班级人数标准定量发放','橡皮筋捆扎→群内通知领取','续报周/结课周增量由教学部统一提出','库存上锁保管不得超标准补发']},
-    {name:'教材发放SOP',trigger:'新学期开课/插班报名',time:'开课前',risk:'中频',output:'教材发放记录',links:[{text:'点击查看流程图',url:'https://365.kdocs.cn/l/cgnq4cn83oQG'},{text:'点击查看SOP',url:'https://365.kdocs.cn/l/cpYzQ3LB0kol'}],
+    {name:'教材发放SOP',trigger:'新学期开课/插班报名',time:'开课前',risk:'中频',output:'教材发放记录',link:'https://365.kdocs.cn/l/cpYzQ3LB0kol',
      steps:['开课前10天信息同步','到货3天内100%清点','整理入库→导出考勤数据','制作分发条→核对库存','满足→发放拍照；不足→增印调拨','插班生每周五统一配送','扫码登记出库同步老师']}
   ]},
   activity:{title:'活动运营类',color:'#6d4f9e',sops:[]},
@@ -984,7 +984,7 @@ function renderSopDetail() {
       <div style="padding:14px 16px;font-size:11px;line-height:1.9;border-top:1px solid var(--stone);background:var(--card);">
         <div style="font-weight:600;color:var(--vermillion-deep);margin-bottom:6px;">操作步骤</div>
         <div style="display:flex;flex-direction:column;gap:4px;">${s.steps.map((st,j)=>`<div style="display:flex;gap:8px;padding:6px 10px;background:var(--parchment-dark);border-radius:6px;align-items:flex-start;"><span style="background:${isHigh?'var(--vermillion)':s.risk==='中频'?'var(--gold)':'var(--jade)'};color:#fff;min-width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;">${j+1}</span><span style="color:var(--text-secondary);">${st}</span></div>`).join('')}</div>
-        <div style="margin-top:8px;padding:6px 10px;background:var(--jade-light);border-radius:6px;font-size:11px;">${s.links ? s.links.map(l=>`<a href="${l.url}" target="_blank" style="color:var(--vermillion-deep);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:4px;margin-right:24px;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'"><span style="display:inline-block;animation:bounceRight 0.8s infinite;">👉</span> ${l.text}</a>`).join('<span style="color:var(--stone);margin:0 8px;">|</span>') : (s.link ?`<a href="${s.link}" target="_blank" style="color:var(--vermillion-deep);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:4px;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'"><span style="display:inline-block;animation:bounceRight 0.8s infinite;">👉</span> ${s.linkText||'点击查看流程图'}</a>` : s.output)}</div>
+        <div style="margin-top:8px;padding:6px 10px;background:var(--jade-light);border-radius:6px;font-size:11px;">${s.links ? s.links.map(l=>`<a href="${l.url}" target="_blank" style="color:var(--vermillion-deep);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:4px;margin-right:24px;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'"><span style="display:inline-block;animation:bounceRight 0.8s infinite;">👉</span> ${l.text}</a>`).join('<span style="color:var(--stone);margin:0 8px;">|</span>') : (s.link ?`<a href="${s.link}" target="_blank" style="color:var(--vermillion-deep);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:4px;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'"><span style="display:inline-block;animation:bounceRight 0.8s infinite;">👉</span> ${s.linkText||'点击查看详细文档内容'}</a>` : s.output)}</div>
         <div style="text-align:center;margin-top:8px;"><span class="filter-chip" onclick="this.closest('details').open=false" style="font-size:10px;">收起</span></div>
       </div>
     </details>`;
