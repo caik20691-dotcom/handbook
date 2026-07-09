@@ -946,7 +946,7 @@ function updateCadenceNav() {
 
 // ==================== TAB 5: SOP CENTER ====================
 function renderSopCenter(panel) {
-  const navHTML = Object.entries(SOP_CATEGORIES).map(([k,v]) => `
+  const navHTML = Object.entries(SOP_CATEGORIES).filter(([k,v]) => v.sops.length > 0).map(([k,v]) => `
     <div class="sop-center-nav-item ${k===selectedSopCat?'active':''}" onclick="selectSopCat('${k}')">${v.title} <span style="font-size:10px;color:var(--text-muted);">${v.sops.length}</span></div>`).join('');
   panel.innerHTML = `
     <div class="sop-center-view">
