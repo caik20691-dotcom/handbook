@@ -950,7 +950,7 @@ function renderSopCenter(panel) {
     <div class="sop-center-nav-item ${k===selectedSopCat?'active':''}" onclick="selectSopCat('${k}')">${v.title} <span style="font-size:10px;color:var(--text-muted);">${v.sops.length}</span></div>`).join('');
   panel.innerHTML = `
     <div class="sop-center-view">
-      <div class="sop-center-nav"><div class="sop-center-nav-title">SOP分类</div>${navHTML}</div>
+      <div class="sop-center-nav"><div class="sop-center-nav-title">分类</div>${navHTML}</div>
       <div class="sop-center-detail" id="sopDetail"></div>
     </div>`;
   renderSopDetail();
