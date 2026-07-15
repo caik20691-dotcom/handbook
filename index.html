@@ -1084,8 +1084,8 @@ function renderRules(panel) {
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
         <div class="card-box" style="border-left:3px solid var(--vermillion);margin-bottom:0;">
-          <h3>红线行为（共${REDLINES.length}条 · 一票否决）</h3>
-          <div class="section-desc" style="color:var(--vermillion-deep);">触碰红线，直接进入纪律处理流程。</div>
+          <div style="display:flex;align-items:center;gap:12px;"><h3 style="margin:0;">红线行为（共${REDLINES.length}条 · 一票否决）</h3><a href="https://365.kdocs.cn/l/cZ7GrHWM3Ko9" target="_blank" style="font-size:11px;color:var(--vermillion-deep);text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:3px;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">📄 查看完整红线制度</a></div>
+          <div class="section-desc" style="color:var(--vermillion-deep);margin-top:4px;">触碰红线，直接进入纪律处理流程。</div>
           ${redHTML}
           <div style="margin-top:12px;padding:10px 14px;background:var(--vermillion-light);border-radius:8px;font-size:11px;line-height:1.8;">
             <strong style="color:var(--vermillion-deep);">红线处罚规则</strong>
@@ -1093,8 +1093,8 @@ function renderRules(panel) {
           </div>
         </div>
         <div class="card-box" style="border-left:3px solid #b8942e;margin-bottom:0;">
-          <h3>黄线行为（共${YELLOWLINES.length}类 · 警告整改）</h3>
-          <div class="section-desc" style="color:#6b4f10;">触碰黄线，纳入月度考核扣分，并要求整改。</div>
+          <div style="display:flex;align-items:center;gap:12px;"><h3 style="margin:0;">黄线行为（共${YELLOWLINES.length}类 · 警告整改）</h3><a href="https://365.kdocs.cn/l/cUpQcuWz2rFC" target="_blank" style="font-size:11px;color:#6b4f10;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:3px;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">📄 查看完整黄线制度</a></div>
+          <div class="section-desc" style="color:#6b4f10;margin-top:4px;">触碰黄线，纳入月度考核扣分，并要求整改。</div>
           ${yellowHTML}
           <div style="margin-top:12px;padding:10px 14px;background:var(--gold-light);border-radius:8px;font-size:11px;line-height:1.8;">
             <strong style="color:#6b4f10;">黄线处罚规则</strong>
