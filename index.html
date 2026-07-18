@@ -675,7 +675,7 @@ function renderSubFilter() {
   else if (currentTab === 'modules') el.innerHTML = prefix + '<span style="font-size:13px;color:var(--text-secondary);">学员服务运营45% · 校区现场管理20% · 物资后勤管理15% · 活动运营支持10% · </span>';
   else if (currentTab === 'checklist') el.innerHTML = prefix + Object.entries(CHECKLIST).map(([k,v]) => `<span class="filter-chip ${k===selectedCadence?'active':''}" onclick="selectCadence('${k}')">${v.title}</span>`).join('');
   else if (currentTab === 'sop') el.innerHTML = prefix + Object.entries(SOP_CATEGORIES).map(([k,v]) => `<span class="filter-chip ${k===selectedSopCat?'active':''}" onclick="selectSopCat('${k}')">${v.title}</span>`).join('');
-  else if (currentTab === 'kpi') el.innerHTML = prefix + '<span style="font-size:13px;color:var(--text-secondary);">2026年教务绩效指标——7项指标覆盖全维度，扣分制管理，0项达标</span>';
+  else if (currentTab === 'kpi') el.innerHTML = prefix + '<span style="font-size:13px;color:var(--text-secondary);">2026年教务绩效指标——7项指标覆盖全维度，0项达标</span>';
   else if (currentTab === 'risk') el.innerHTML = prefix + RISKS.map((r,i) => `<span class="filter-chip ${i===selectedRisk?'active':''}" onclick="selectRisk(${i})">${r.icon} ${r.type}</span>`).join('');
   else if (currentTab === 'risk') el.innerHTML = prefix + RISKS.map((r,i) => `<span class="filter-chip ${i===selectedRisk?'active':''}" onclick="selectRisk(${i})">${r.icon} ${r.type}</span>`).join('');
   else if (currentTab === 'rules') el.innerHTML = prefix + '<span style="font-size:13px;color:var(--text-secondary);">红线一票否决 · 黄线警告整改 · 红线看性质，黄线看频次</span>';
@@ -1020,7 +1020,7 @@ function renderKPI(panel) {
   panel.innerHTML = `
     <div style="padding:24px 28px;">
       <h3>2026年教务绩效指标</h3>
-      <div class="section-desc">7项指标，覆盖服务、执行、运营、物资、专业度全维度，扣分制管理。</div>
+      <div class="section-desc">7项指标，覆盖服务、执行、运营、物资、专业度全维度。</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">${cardsHTML}</div>
     </div>`;
 }
