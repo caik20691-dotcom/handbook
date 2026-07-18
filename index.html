@@ -361,7 +361,7 @@ const LIFECYCLE = [
   {stage:'售后承接与开课',goal:'新报承接、开课提醒、首课保障',actions:'教务：新报承接 · 开课提醒 | 老师：课堂授课'},
   {stage:'教学交付',goal:'课堂教学与教务教学支持',actions:'老师：课堂授课 | 教务：教学物资保障 · 教学服务支持'},
   {stage:'课后服务与家校沟通',goal:'课后反馈、家校服务、问题处理',actions:'教务：家校服务 · 问题处理/对接 | 老师：课后反馈'},
-  {stage:'续费扩科复购',goal:'续费促进、扩科转化、复购跟进',actions:'顾问：扩科复购转化 | 老师：续费促进'},
+  {stage:'续费扩科复购',goal:'续费促进、扩科转化、复购跟进',actions:'顾问：扩科复购转化 | 教务：续费支持协同 | 老师：续费促进'},
   {stage:'老带新转介绍',goal:'服务口碑维护、转介绍跟进',actions:'顾问：转介绍跟进 | 教务：服务口碑维护'}
 ];
 
@@ -827,7 +827,7 @@ function renderLifecycle(panel) {
     {step:'售后承接\n与开课',roles:[{name:'教务',color:'#b5342e'},{name:'老师',color:'#3d6f9e'}],desc:'新报承接·开课提醒·首课保障'},
     {step:'教学交付',roles:[{name:'老师',color:'#3d6f9e'},{name:'教务',color:'#b5342e'}],desc:'课堂教学与教务支持'},
     {step:'课后服务\n与家校沟通',roles:[{name:'教务',color:'#b5342e'},{name:'老师',color:'#3d6f9e'}],desc:'课后反馈·家校服务·问题处理'},
-    {step:'续费扩科\n复购',roles:[{name:'顾问',color:'#c98850'},{name:'老师',color:'#3d6f9e'}],desc:'续费促进·扩科转化·复购跟进'},
+    {step:'续费扩科\n复购',roles:[{name:'顾问',color:'#c98850'},{name:'教务',color:'#b5342e'},{name:'老师',color:'#3d6f9e'}],desc:'续费促进·扩科转化·复购跟进'},
     {step:'老带新\n转介绍',roles:[{name:'顾问',color:'#c98850'},{name:'教务',color:'#b5342e'}],desc:'服务口碑维护·转介绍跟进'}
   ];
 
