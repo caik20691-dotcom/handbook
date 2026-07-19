@@ -498,6 +498,66 @@ const SOP_CATEGORIES = {
   conversion:{title:'经营转化类',color:'#c98850',sops:[]}
 };
 
+const BUSINESRULES = [
+  {title:'班型限额',icon:'👥',color:'#b5342e',items:[
+    {label:'大班（1-2年级）',value:'10人 / 调课上限11人'},
+    {label:'大班（3-9年级）',value:'12人 / 调课上限13人'},
+    {label:'高一高二',value:'14人 / 调课上限15人'},
+    {label:'集训队/强基班',value:'20人 / 调课上限21人'},
+    {label:'小学初中S班',value:'15人 / 调课上限16人'}
+  ]},
+  {title:'调课规则',icon:'🔄',color:'#2d6b5e',items:[
+    {label:'机会次数',value:'每学期每科4次（不占学位）'},
+    {label:'同节课周期内',value:'任意调动只消耗1次'},
+    {label:'调回原班',value:'返还次数'},
+    {label:'补课次数',value:'无限，不占调课次数'},
+    {label:'调课限额',value:'班型人数+1'}
+  ]},
+  {title:'转班规则',icon:'🔀',color:'#3d6f9e',items:[
+    {label:'机会次数',value:'每学期每科不限次数（占学位）'},
+    {label:'转班条件',value:'同期同年级同科目同课次同体系'},
+    {label:'升班',value:'需测试成绩或老师推荐'},
+    {label:'降班',value:'协商即可'},
+    {label:'不可转',value:'低班型转高班型；班级人数为0/成绩过期/锁转入/待缴费占用（24h取消）'}
+  ]},
+  {title:'退费规则',icon:'💸',color:'#c98850',items:[
+    {label:'申请时限',value:'下节课上课前申请，已过课次不退'},
+    {label:'退费口径',value:'按剩余课次退回'},
+    {label:'连续缺课',value:'3次缺课需退学位不保留'},
+    {label:'已结课',value:'不可退'},
+    {label:'集训队缺课',value:'只能调课或录课'},
+    {label:'截止时间',value:'结课下周四24:00前'},
+    {label:'到账时长',value:'10个工作日'}
+  ]},
+  {title:'插班规则',icon:'➕',color:'#6d4f9e',items:[
+    {label:'计费起点',value:'从下一节课开始上课，前面不收费不补课'},
+    {label:'26暑假限制',value:'小学最后两次课不允许插班（小低11-12次，小高14-15次）；初高中第3次课结束后不允许'},
+    {label:'26秋季限制',value:'小学最后两次课（16-17次）不允许插班'}
+  ]},
+  {title:'缴费方式',icon:'💳',color:'#1a5c6b',items:[
+    {label:'线上',value:'课程中心公众号 / 对公转账 / 数字人民币（仅限小初）'},
+    {label:'线下',value:'扫码枪 / POS机刷卡 / POS机扫码 / 现金'},
+    {label:'POS机',value:'不允许拆金额支付'},
+    {label:'链接/二维码',value:'24小时自动取消并释放学位'}
+  ]},
+  {title:'收款账号',icon:'🏦',color:'#4a3c6e',items:[
+    {label:'小初（含信竞）',value:'深圳桃李未来教育管理有限公司 / 招商银行深圳振华支行 / 755952725310401'},
+    {label:'高中',value:'深圳市福田区桃李未来教育培训中心 / 755963325910201'},
+    {label:'对公转账',value:'须收转账回执当天录入；备注须为"无"或"培训费"'}
+  ]},
+  {title:'续报期',icon:'📅',color:'#b5342e',items:[
+    {label:'寒春续报',value:'每年10月左右开启，持续2周'},
+    {label:'暑秋续报',value:'每年4月左右开启，持续2周'},
+    {label:'续报期对象',value:'仅在读学员可报寒春/暑秋，新生只能报秋季/春季'}
+  ]},
+  {title:'班课时段',icon:'⏰',color:'#2d6b5e',items:[
+    {label:'2小时时段',value:'A(8:00-10:00) / B(10:20-12:20) / C(13:30-15:30) / D(15:50-17:50) / E(18:30-20:30)'},
+    {label:'3小时时段',value:'F(09:00-12:00) / I(14:00-17:00) / L(18:00-21:00)'},
+    {label:'春秋周期',value:'小学：每周四至下周三为一周期；初高中：每周五至下周四'},
+    {label:'寒暑周期',value:'连续每天上课，2-3期内容一致'}
+  ]}
+];
+
 const KPIS = [
   {name:'客户服务满意度',bar:'#b5342e',desc:'衡量家长对教务服务态度、响应速度、问题处理结果的满意情况'},
   {name:'工作事项闭环质量',bar:'#2d6b5e',desc:'衡量教务负责事项是否做到有接收、有处理、有反馈、有记录，避免事项遗漏、搁置或超时'},
@@ -622,6 +682,7 @@ const TABS = [
   {id:'lifecycle',icon:'🔄',label:'经营执行链路'},
   {id:'checklist',icon:'📅',label:'周期工作清单'},
   {id:'sop',icon:'📖',label:'关键SOP中心'},
+  {id:'bizrules',icon:'📐',label:'业务规则'},
   {id:'kpi',icon:'🎯',label:'KPI'},
   {id:'rules',icon:'⚖️',label:'红黄线'},
   {id:'risk',icon:'🛡',label:'风险预警'},
@@ -675,6 +736,7 @@ function renderSubFilter() {
   else if (currentTab === 'modules') el.innerHTML = prefix + '<span style="font-size:13px;color:var(--text-secondary);">学员服务运营45% · 校区现场管理20% · 物资后勤管理15% · 活动运营支持10% · </span>';
   else if (currentTab === 'checklist') el.innerHTML = prefix + Object.entries(CHECKLIST).map(([k,v]) => `<span class="filter-chip ${k===selectedCadence?'active':''}" onclick="selectCadence('${k}')">${v.title}</span>`).join('');
   else if (currentTab === 'sop') el.innerHTML = prefix + Object.entries(SOP_CATEGORIES).map(([k,v]) => `<span class="filter-chip ${k===selectedSopCat?'active':''}" onclick="selectSopCat('${k}')">${v.title}</span>`).join('');
+  else if (currentTab === 'bizrules') el.innerHTML = prefix + '<span style="font-size:13px;color:var(--text-secondary);">班型限额、调课转班、退费插班、缴费收款、续报期、班课时段等核心业务规则一览</span>';
   else if (currentTab === 'kpi') el.innerHTML = prefix;
   else if (currentTab === 'risk') el.innerHTML = prefix + RISKS.map((r,i) => `<span class="filter-chip ${i===selectedRisk?'active':''}" onclick="selectRisk(${i})">${r.icon} ${r.type}</span>`).join('');
   else if (currentTab === 'risk') el.innerHTML = prefix + RISKS.map((r,i) => `<span class="filter-chip ${i===selectedRisk?'active':''}" onclick="selectRisk(${i})">${r.icon} ${r.type}</span>`).join('');
@@ -689,6 +751,7 @@ function renderMainPanel() {
   else if (currentTab === 'lifecycle') renderLifecycle(panel);
   else if (currentTab === 'checklist') renderChecklist(panel);
   else if (currentTab === 'sop') renderSopCenter(panel);
+  else if (currentTab === 'bizrules') renderBizRules(panel);
   else if (currentTab === 'kpi') renderKPI(panel);
   else if (currentTab === 'risk') renderRisk(panel);
   else if (currentTab === 'rules') renderRules(panel);
@@ -1009,7 +1072,28 @@ function updateSopNav() {
   });
 }
 
-// ==================== TAB 6: KPI ====================
+// ==================== TAB 6: BIZRULES ====================
+function renderBizRules(panel) {
+  const rulesHTML = BUSINESRULES.map(r => `
+    <div class="card-box" style="border-left:3px solid ${r.color};margin-bottom:0;">
+      <h3 style="color:${r.color};margin-top:0;font-size:15px;">${r.icon} ${r.title}</h3>
+      <div style="display:flex;flex-direction:column;gap:5px;">
+        ${r.items.map(item => `<div style="display:flex;gap:10px;padding:7px 10px;background:var(--parchment-dark);border-radius:6px;align-items:flex-start;">
+          <span style="font-weight:600;color:var(--text);min-width:100px;flex-shrink:0;font-size:12px;">${item.label}</span>
+          <span style="color:var(--text-secondary);line-height:1.6;font-size:12px;flex:1;">${item.value}</span>
+        </div>`).join('')}
+      </div>
+    </div>`).join('');
+
+  panel.innerHTML = `
+    <div style="padding:24px 28px;">
+      <h3>业务规则速查</h3>
+      <div class="section-desc" style="margin-bottom:14px;">班型限额、调课转班、退费插班、缴费收款、续报期、班课时段等核心业务规则一览。<strong style="color:var(--vermillion-deep);">规则以当年最新发布为准</strong>，遇特殊场景请同步校区主管确认。</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">${rulesHTML}</div>
+    </div>`;
+}
+
+// ==================== TAB 7: KPI ====================
 function renderKPI(panel) {
   const cardsHTML = KPIS.map((k,i) => `
     <div style="display:flex;align-items:center;gap:14px;padding:16px 20px;background:var(--card);border:1px solid var(--stone);border-radius:12px;border-left:4px solid ${k.bar};transition:all 0.3s ease;" onmouseover="this.style.boxShadow='0 4px 16px rgba(44,36,22,0.08)';this.style.transform='translateX(3px)';" onmouseout="this.style.boxShadow='none';this.style.transform='translateX(0)';">
