@@ -613,15 +613,16 @@ const YELLOWLINES_DETAIL = ['首次：当月绩效扣10分，影响晋升/加薪
 const APPEAL_PROCESS = '员工须在收到处罚通知后3个工作日内向直属上级和部门负责人提交申诉及证明材料。直属上级和部门负责人在5个工作日内完成复核。若申诉成功，撤销或调整原处罚；若驳回，维持原判定。';
 
 const TOOLS = {
-  systems:['业务管理系统','尘锋SCRM','WPS365','企业微信','阿里邮箱'],
-  forms:['学员承接记录表','考勤回访记录表','学员回访跟进表','风险学员跟进表','物资出入库登记表','校区巡查记录表','活动复盘表'],
-  sops:['考勤回访SOP','学员回访SOP','调课SOP','转班SOP','常规退学位SOP','校区开闭店SOP','校区巡查SOP','校区维修处理SOP','校区教学空间管理规范','校区积分卡发放SOP'],
+  systems:['业务管理系统','OA办公门户','OA费控合同系统','OA物资管理系统','EHR系统','教务SOP系统','尘锋SCRM','WPS365','企业微信','阿里邮箱','Classin','货拉拉企业版','顺丰月结'],
+  docs:['教务老师百宝箱','校区百宝箱（班课/1对1）','外宣资源库','签单加油站','26-27暑秋续报百宝箱','全日制课程百宝箱','信竞课程百宝箱','2026培优教务事项同步','校区运营监督检查表','财务指导手册202504','现金管理风险防控规范','客诉案例库/客诉百宝箱','2025桃李未来集团品牌手册'],
+  forms:['学员承接记录表','考勤回访记录表','学员回访跟进表','风险学员跟进表','物资出入库登记表','校区巡查记录表','活动复盘表','礼品出库登记表','积分商城活动台卡','积分商城价格标签','用印材料登记表','固定资产盘盈盘亏说明表','校区例会会议记录模板','学员课程表模板'],
+  sops:['考勤回访SOP','学员回访SOP','调课SOP','转班SOP','单次课退费SOP','常规退学位SOP','开票处理SOP','客诉处理SOP','学期开课准备SOP','校区开闭店SOP','校区巡查SOP','校区维修处理SOP','校区教学空间管理规范','非全职人员管理SOP','校区迎检SOP','校区积分卡发放SOP','教材发放SOP','消防火灾应急疏散SOP','海姆立克急救SOP','烫伤处理SOP','突发停电应急SOP','突发晕倒与心肺复苏SOP','遗失物品处理SOP','考务组织流程SOP'],
   onboarding:[
-    {phase:'第1天',content:'理解岗位全貌、五大职责模块、学员生命周期'},
-    {phase:'第2-3天',content:'学习每日工作清单、开闭店、考勤回访、教材发放'},
-    {phase:'第4-7天',content:'跟岗学习家长沟通、调课转班、客诉处理'},
-    {phase:'第2周',content:'独立完成基础工作，并由主管抽查SOP执行情况'},
-    {phase:'第3-4周',content:'进入完整岗位实践，开始承担学员服务与现场管理闭环'}
+    {phase:'第1天',content:'理解岗位全貌、五大职责模块、学员生命周期；熟悉校区物理空间与团队'},
+    {phase:'第2-3天',content:'学习每日工作清单、开闭店、考勤回访、教材发放；掌握业务系统基础操作'},
+    {phase:'第4-7天',content:'跟岗学习家长沟通、调课转班、客诉处理；熟悉橙子通巡检与物资领用'},
+    {phase:'第2周',content:'独立完成基础工作，并由主管抽查SOP执行情况；学习考务与应急流程'},
+    {phase:'第3-4周',content:'进入完整岗位实践，开始承担学员服务与现场管理闭环；参与一次完整考务或开课保障'}
   ]
 };
 
@@ -1199,6 +1200,10 @@ function renderTools(panel) {
       <details open class="checklist-item" style="margin-bottom:10px;border:1px solid var(--stone);border-radius:10px;overflow:hidden;">
         <summary style="padding:12px 16px;cursor:pointer;font-size:14px;font-weight:700;color:var(--vermillion-deep);background:var(--parchment-dark);list-style:none;">系统工具（${TOOLS.systems.length}个）</summary>
         <div style="padding:14px 16px;display:flex;flex-wrap:wrap;gap:8px;">${TOOLS.systems.map(s=>`<span style="background:var(--vermillion-light);color:var(--vermillion-deep);padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;">${s}</span>`).join('')}</div>
+      </details>
+      <details class="checklist-item" style="margin-bottom:10px;border:1px solid var(--stone);border-radius:10px;overflow:hidden;">
+        <summary style="padding:12px 16px;cursor:pointer;font-size:14px;font-weight:700;color:var(--vermillion-deep);background:var(--parchment-dark);list-style:none;">常用文档（${TOOLS.docs.length}个）</summary>
+        <div style="padding:14px 16px;display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:12px;color:var(--text-secondary);">${TOOLS.docs.map(d=>`<div style="padding:8px 12px;background:var(--parchment-dark);border-radius:6px;">${d}</div>`).join('')}</div>
       </details>
       <details class="checklist-item" style="margin-bottom:10px;border:1px solid var(--stone);border-radius:10px;overflow:hidden;">
         <summary style="padding:12px 16px;cursor:pointer;font-size:14px;font-weight:700;color:var(--vermillion-deep);background:var(--parchment-dark);list-style:none;">常用表单（${TOOLS.forms.length}个）</summary>
